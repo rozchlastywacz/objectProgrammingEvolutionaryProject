@@ -1,3 +1,5 @@
+import java.util.LinkedHashMap;
+
 public enum MapDirection {
     N("north"),
     NE("north-east"),
@@ -13,7 +15,12 @@ public enum MapDirection {
         this.message = message;
     }
 
-    public MapDirection rotateBy(int angle){
-        return null;
+    @Override
+    public String toString(){
+        return message;
+    }
+
+    public MapDirection rotateBy(int angle) {
+        return (MapDirection.values()[(this.ordinal()+angle)%8]);
     }
 }

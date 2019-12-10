@@ -10,22 +10,11 @@ public class Grass implements IWorldMapElement {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Grass)) return false;
-        Grass grass = (Grass) o;
-        return energy == grass.energy &&
-                Objects.equals(position, grass.position);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(position, energy);
-    }
-
-    @Override
     public Position getPosition() {
         return position;
+    }
+
+    public int getEnergy() {
+        return energy;
     }
 }

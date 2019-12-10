@@ -1,6 +1,5 @@
 public interface IWorldMap {
-    boolean canMoveTo(Position position);
-    void place(IWorldMapElement element);
-    boolean isOccupied(Position position);
+    Position adjacent(Position position, MapDirection direction);
+    void placeAt(IWorldMapElement element, Position position);
     Object objectAt(Position position);
 }

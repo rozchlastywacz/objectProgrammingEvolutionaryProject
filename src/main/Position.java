@@ -28,29 +28,6 @@ public class Position {
         return Objects.hash(x, y);
     }
 
-    public boolean precedes(Position other){
-        return this.x <= other.x && this.y <= other.y;
-    }
-
-
-    public boolean follows(Position other){
-        return this.x >= other.x && this.y >= other.y;
-    }
-
-    public Position upperRight(Position other){
-        return new Position(
-                Math.max(this.x, other.x),
-                Math.max(this.y, other.y)
-        );
-    }
-
-    public Position lowerLeft(Position other){
-        return new Position(
-                Math.min(this.x, other.x),
-                Math.min(this.y, other.y)
-        );
-    }
-
     public Position add(Position other){
         return new Position(
                 this.x+other.y,
@@ -58,18 +35,11 @@ public class Position {
         );
     }
 
-    public Position substract(Position other){
-        return new Position(
-                this.x - other.x,
-                this.y - other.y
-        );
+    public int getX() {
+        return x;
     }
 
-    public Position opposite(){
-        return new Position(
-                -this.x,
-                -this.y
-        );
+    public int getY() {
+        return y;
     }
-
 }
