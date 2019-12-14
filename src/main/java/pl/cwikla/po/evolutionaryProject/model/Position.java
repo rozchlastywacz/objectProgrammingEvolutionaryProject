@@ -1,10 +1,17 @@
+package pl.cwikla.po.evolutionaryProject.model;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class Position {
     private final int x;
     private final int y;
 
-    public Position(int x, int y) {
+
+    @JsonCreator
+    public Position(@JsonProperty("x") int x,@JsonProperty("y") int y) {
         this.x = x;
         this.y = y;
     }
@@ -30,7 +37,7 @@ public class Position {
 
     public Position add(Position other){
         return new Position(
-                this.x+other.y,
+                this.x+other.x,
                 this.y+other.y
         );
     }

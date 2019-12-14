@@ -1,4 +1,4 @@
-import java.util.LinkedHashMap;
+package pl.cwikla.po.evolutionaryProject.model;
 
 public enum MapDirection {
     N("north"),
@@ -21,6 +21,6 @@ public enum MapDirection {
     }
 
     public MapDirection rotateBy(int angle) {
-        return (MapDirection.values()[(this.ordinal()+angle)%8]);
+        return (values()[(ordinal()+angle)%values().length]);
     }
 }
