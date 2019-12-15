@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list id="d8fc58ba-e10f-425f-a866-43806f7bd51f" name="Revert &quot;initial commit on local repository&quot;" comment="Revert &quot;initial commit on local repository&quot;&#10;&#10;This reverts commit 434a9fe" />
     <list default="true" id="2319696f-0a72-4c96-bf94-279821a318ce" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/World.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/SimulationEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/SimulationEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/AnimalGenotype.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/AnimalGenotype.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/MapDirection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/MapDirection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/TorusWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/TorusWorldMap.java" afterDir="false" />
     </list>
+    <list id="d8fc58ba-e10f-425f-a866-43806f7bd51f" name="Revert &quot;initial commit on local repository&quot;" comment="Revert &quot;initial commit on local repository&quot;&#10;&#10;This reverts commit 434a9fe" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,7 +34,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Animal.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
-              <caret line="64" column="39" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
+              <caret line="65" column="37" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="n#!!doc;n#getEnergy#0;n#Animal#0" />
@@ -50,13 +46,15 @@
                 <element signature="e#962#963#0" expanded="true" />
                 <element signature="e#1005#1006#0" expanded="true" />
                 <element signature="e#1036#1037#0" expanded="true" />
-                <element signature="e#1080#1081#0" expanded="true" />
-                <element signature="e#1114#1115#0" expanded="true" />
+                <element signature="e#1112#1113#0" expanded="true" />
+                <element signature="e#1146#1147#0" expanded="true" />
                 <element signature="e#1156#1183#0" />
                 <element signature="e#1331#1332#0" expanded="true" />
                 <element signature="e#1355#1356#0" expanded="true" />
                 <element signature="e#1807#1808#0" expanded="true" />
                 <element signature="e#1835#1836#0" expanded="true" />
+                <element signature="e#1952#1953#0" expanded="true" />
+                <element signature="e#1980#1981#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -90,8 +88,8 @@
       <file leaf-file-name="TorusWorldMap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/TorusWorldMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="135" column="4" selection-start-line="135" selection-start-column="4" selection-end-line="135" selection-end-column="4" />
+            <state relative-caret-position="187">
+              <caret line="137" column="54" selection-start-line="137" selection-start-column="54" selection-end-line="137" selection-end-column="54" />
               <folding>
                 <element signature="n#!!doc;n#TorusWorldMap#0;n#TorusWorldMap#0" />
                 <element signature="e#2632#2665#0" />
@@ -106,12 +104,14 @@
                 <element signature="e#1043#1044#0" expanded="true" />
                 <element signature="e#2519#2520#0" expanded="true" />
                 <element signature="e#2569#2570#0" expanded="true" />
+                <element signature="e#2015#2038#0" />
                 <element signature="e#2661#2662#0" expanded="true" />
                 <element signature="e#2714#2715#0" expanded="true" />
                 <element signature="e#2902#2903#0" expanded="true" />
                 <element signature="e#2951#2952#0" expanded="true" />
                 <element signature="e#3011#3044#0" />
-                <element signature="e#4607#4648#0" />
+                <element signature="e#4765#4766#0" expanded="true" />
+                <element signature="e#4825#4826#0" expanded="true" />
                 <element signature="n#!!doc;n#Cell#0;n#TorusWorldMap#0" />
               </folding>
             </state>
@@ -121,8 +121,8 @@
       <file leaf-file-name="SimulationEngine.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/SimulationEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="123" column="14" selection-start-line="123" selection-start-column="14" selection-end-line="123" selection-end-column="14" />
+            <state relative-caret-position="306">
+              <caret line="154" column="21" selection-start-line="154" selection-start-column="21" selection-end-line="154" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="n#!!doc;n#SimulationEngine#0;n#SimulationEngine#0" />
@@ -241,9 +241,9 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/MapDirection.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/World.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/TorusWorldMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/AnimalGenotype.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Animal.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/TorusWorldMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/SimulationEngine.java" />
       </list>
     </option>
@@ -679,12 +679,14 @@
             <element signature="e#1043#1044#0" expanded="true" />
             <element signature="e#2519#2520#0" expanded="true" />
             <element signature="e#2569#2570#0" expanded="true" />
+            <element signature="e#2015#2038#0" />
             <element signature="e#2661#2662#0" expanded="true" />
             <element signature="e#2714#2715#0" expanded="true" />
             <element signature="e#2902#2903#0" expanded="true" />
             <element signature="e#2951#2952#0" expanded="true" />
             <element signature="e#3011#3044#0" />
-            <element signature="e#4607#4648#0" />
+            <element signature="e#4765#4766#0" expanded="true" />
+            <element signature="e#4825#4826#0" expanded="true" />
             <element signature="n#!!doc;n#Cell#0;n#TorusWorldMap#0" />
           </folding>
         </state>
@@ -757,12 +759,14 @@
             <element signature="e#1043#1044#0" expanded="true" />
             <element signature="e#2519#2520#0" expanded="true" />
             <element signature="e#2569#2570#0" expanded="true" />
+            <element signature="e#2015#2038#0" />
             <element signature="e#2661#2662#0" expanded="true" />
             <element signature="e#2714#2715#0" expanded="true" />
             <element signature="e#2902#2903#0" expanded="true" />
             <element signature="e#2951#2952#0" expanded="true" />
             <element signature="e#3011#3044#0" />
-            <element signature="e#4607#4648#0" />
+            <element signature="e#4765#4766#0" expanded="true" />
+            <element signature="e#4825#4826#0" expanded="true" />
             <element signature="n#!!doc;n#Cell#0;n#TorusWorldMap#0" />
           </folding>
         </state>
@@ -844,12 +848,14 @@
             <element signature="e#1043#1044#0" expanded="true" />
             <element signature="e#2519#2520#0" expanded="true" />
             <element signature="e#2569#2570#0" expanded="true" />
+            <element signature="e#2015#2038#0" />
             <element signature="e#2661#2662#0" expanded="true" />
             <element signature="e#2714#2715#0" expanded="true" />
             <element signature="e#2902#2903#0" expanded="true" />
             <element signature="e#2951#2952#0" expanded="true" />
             <element signature="e#3011#3044#0" />
-            <element signature="e#4607#4648#0" />
+            <element signature="e#4765#4766#0" expanded="true" />
+            <element signature="e#4825#4826#0" expanded="true" />
             <element signature="n#!!doc;n#Cell#0;n#TorusWorldMap#0" />
           </folding>
         </state>
@@ -921,12 +927,14 @@
             <element signature="e#1043#1044#0" expanded="true" />
             <element signature="e#2519#2520#0" expanded="true" />
             <element signature="e#2569#2570#0" expanded="true" />
+            <element signature="e#2015#2038#0" />
             <element signature="e#2661#2662#0" expanded="true" />
             <element signature="e#2714#2715#0" expanded="true" />
             <element signature="e#2902#2903#0" expanded="true" />
             <element signature="e#2951#2952#0" expanded="true" />
             <element signature="e#3011#3044#0" />
-            <element signature="e#4607#4648#0" />
+            <element signature="e#4765#4766#0" expanded="true" />
+            <element signature="e#4825#4826#0" expanded="true" />
             <element signature="n#!!doc;n#Cell#0;n#TorusWorldMap#0" />
           </folding>
         </state>
@@ -1061,7 +1069,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Animal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
-          <caret line="64" column="39" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
+          <caret line="65" column="37" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="n#!!doc;n#getEnergy#0;n#Animal#0" />
@@ -1073,21 +1081,23 @@
             <element signature="e#962#963#0" expanded="true" />
             <element signature="e#1005#1006#0" expanded="true" />
             <element signature="e#1036#1037#0" expanded="true" />
-            <element signature="e#1080#1081#0" expanded="true" />
-            <element signature="e#1114#1115#0" expanded="true" />
+            <element signature="e#1112#1113#0" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
             <element signature="e#1156#1183#0" />
             <element signature="e#1331#1332#0" expanded="true" />
             <element signature="e#1355#1356#0" expanded="true" />
             <element signature="e#1807#1808#0" expanded="true" />
             <element signature="e#1835#1836#0" expanded="true" />
+            <element signature="e#1952#1953#0" expanded="true" />
+            <element signature="e#1980#1981#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/TorusWorldMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="135" column="4" selection-start-line="135" selection-start-column="4" selection-end-line="135" selection-end-column="4" />
+        <state relative-caret-position="187">
+          <caret line="137" column="54" selection-start-line="137" selection-start-column="54" selection-end-line="137" selection-end-column="54" />
           <folding>
             <element signature="n#!!doc;n#TorusWorldMap#0;n#TorusWorldMap#0" />
             <element signature="e#2632#2665#0" />
@@ -1102,12 +1112,14 @@
             <element signature="e#1043#1044#0" expanded="true" />
             <element signature="e#2519#2520#0" expanded="true" />
             <element signature="e#2569#2570#0" expanded="true" />
+            <element signature="e#2015#2038#0" />
             <element signature="e#2661#2662#0" expanded="true" />
             <element signature="e#2714#2715#0" expanded="true" />
             <element signature="e#2902#2903#0" expanded="true" />
             <element signature="e#2951#2952#0" expanded="true" />
             <element signature="e#3011#3044#0" />
-            <element signature="e#4607#4648#0" />
+            <element signature="e#4765#4766#0" expanded="true" />
+            <element signature="e#4825#4826#0" expanded="true" />
             <element signature="n#!!doc;n#Cell#0;n#TorusWorldMap#0" />
           </folding>
         </state>
@@ -1115,8 +1127,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/SimulationEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="123" column="14" selection-start-line="123" selection-start-column="14" selection-end-line="123" selection-end-column="14" />
+        <state relative-caret-position="306">
+          <caret line="154" column="21" selection-start-line="154" selection-start-column="21" selection-end-line="154" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="n#!!doc;n#SimulationEngine#0;n#SimulationEngine#0" />

@@ -7,17 +7,21 @@ import java.util.*;
 public class SimulationEngine {
     private final TorusWorldMap worldMap;
     private final List<Animal> animalList;
-    private int moveEnergy;
-    private int plantEnergy;
+    private final Set<Position> positionsOfInterest;
+    private final int moveEnergy;
+    private final int plantEnergy;
+    private final int startEnergy;
 
     private static final Random RANDOM = new Random();
 
     //region creating engine
-    private SimulationEngine(TorusWorldMap worldMap, List<Animal> animalList, int moveEnergy, int plantEnergy) {
+    private SimulationEngine(TorusWorldMap worldMap, List<Animal> animalList, int moveEnergy, int plantEnergy, int startEnergy) {
         this.worldMap = worldMap;
         this.animalList = animalList;
+        this.positionsOfInterest = new HashSet<>();
         this.moveEnergy = moveEnergy;
         this.plantEnergy = plantEnergy;
+        this.startEnergy = startEnergy;
     }
 
     public static SimulationEngine create(Config config) {
@@ -41,7 +45,8 @@ public class SimulationEngine {
                 worldMap,
                 generationZero,
                 config.getAnimals().getMoveEnergy(),
-                config.getAnimals().getPlantEnergy()
+                config.getAnimals().getPlantEnergy(),
+                config.getAnimals().getStartEnergy()
         );
     }
 
@@ -112,16 +117,56 @@ public class SimulationEngine {
             MapDirection oldOrientation = animal.getOrientation();
             MapDirection newOrientation = oldOrientation.rotateBy(animal.getGenotype().angle());
             Position newPosition = worldMap.adjacent(oldPosition, newOrientation);
-            animal.moveTo(newPosition, newOrientation);
+            animal.moveTo(newPosition, newOrientation, moveEnergy);
+            positionsOfInterest.add(newPosition);
         });
     }
 
     private void eatPlants() {
-        //TODO
+        positionsOfInterest.stream()
+                .filter(worldMap::isGrassAt)
+                .forEach(position -> {
+                    TreeSet<Animal> animals = worldMap.getAnimalsAt(position);
+                    Animal strongest = animals.last();
+                    Set<Animal> equallyStrong = new TreeSet<>();
+                    equallyStrong.add(strongest);
+                    Animal secondStrongest = animals.lower(strongest);
+
+                    while (secondStrongest != null && secondStrongest.getEnergy() == strongest.getEnergy()) {
+                        equallyStrong.add(secondStrongest);
+                        secondStrongest = animals.lower(secondStrongest);
+                    }
+
+                    int energy = plantEnergy/equallyStrong.size();
+                    equallyStrong.forEach(animal -> animal.eatGrass(energy));
+                });
     }
 
     private void procreate() {
-        //TODO
+        positionsOfInterest.stream()
+                .filter(worldMap::sufficientNumberOfAnimals)
+                .forEach(position -> {
+                    Animal firstParent = worldMap.getAnimalsAt(position).last();
+                    Animal secondParent = worldMap.getAnimalsAt(position).lower(firstParent);
+                    if(enoughEnergy(firstParent, secondParent)){
+                        Animal child = makeAChild(firstParent, secondParent);
+                        animalList.add(child);
+                        worldMap.placeAnimal(child);
+                    }
+                });
+    }
+
+    private Animal makeAChild(Animal firstParent, Animal secondParent) {
+        return new Animal(
+                AnimalGenotype.mix(firstParent.getGenotype(), secondParent.getGenotype()),
+                MapDirection.random(),
+                worldMap.adjacent(firstParent.getPosition(), MapDirection.random()),
+                firstParent.getEnergy()/2+secondParent.getEnergy()/2
+        );
+    }
+
+    private boolean enoughEnergy(Animal firstParent, Animal secondParent) {
+        return firstParent.getEnergy() >= startEnergy/2 && secondParent.getEnergy() >= startEnergy/2;
     }
 
 

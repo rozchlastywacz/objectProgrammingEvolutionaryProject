@@ -134,6 +134,10 @@ public class TorusWorldMap implements AnimalObserver {
     }
     //endregion
     //region Animal and other things handling
+    public boolean sufficientNumberOfAnimals(Position position){
+        return map.get(position).occupants.size() > 1;
+    }
+
     public void placeAnimal(Animal animal){
         place(animal);
         animal.register(this);

@@ -59,15 +59,20 @@ public class Animal {
     }
     //endregion
     //region Movement and life
-    public void moveTo(Position position, MapDirection orientation) {
+    public void moveTo(Position position, MapDirection orientation, int energyDrained) {
         Position oldPosition = this.position;
         this.position = position;
         this.orientation = orientation;
+        this.energy -= energyDrained;
         notifyObservers(oldPosition);
     }
 
     public boolean isDead(){
         return energy <0;
+    }
+
+    public void eatGrass(int energy){
+        this.energy += energy;
     }
     //endregion
 }
