@@ -22,7 +22,7 @@ public class Animal {
         this.observers = new LinkedList<>();
     }
 
-
+    //region Getters and Setters
     public int getEnergy() {
         return energy;
     }
@@ -42,9 +42,14 @@ public class Animal {
     public MapDirection getOrientation() {
         return orientation;
     }
-
+    //endregion
+    //region Observers handling
     public void register(AnimalObserver observer) {
         observers.add(observer);
+    }
+
+    public void unregister(AnimalObserver observer){
+        observers.remove(observer);
     }
 
     private void notifyObservers(Position oldPosition) {
@@ -52,15 +57,17 @@ public class Animal {
             observer.onPositionChanged(this, oldPosition);
         }
     }
-
-    public void moveTo(Position position) {
+    //endregion
+    //region Movement and life
+    public void moveTo(Position position, MapDirection orientation) {
         Position oldPosition = this.position;
         this.position = position;
+        this.orientation = orientation;
         notifyObservers(oldPosition);
     }
 
-    public Animal makeAChild(Animal other) {
-        return null;
+    public boolean isDead(){
+        return energy <0;
     }
-
+    //endregion
 }

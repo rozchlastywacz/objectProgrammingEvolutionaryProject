@@ -1,8 +1,8 @@
 package pl.cwikla.po.evolutionaryProject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.TreeSet;
+import pl.cwikla.po.evolutionaryProject.model.Position;
+
+import java.util.*;
 
 public class World {
     public static void main(String[] args) {
@@ -27,6 +27,18 @@ public class World {
         System.out.println(mapahasz);
         mapahasz.put(1, mapahasz.remove(1) +1);
         System.out.println(mapahasz);
+
+        Set<Position> jungleEmptyPositions = new TreeSet<>(Comparator.comparing(Position::getX).thenComparing(Position::getY));
+        jungleEmptyPositions.add(new Position(1,2));
+        jungleEmptyPositions.add(new Position(1,3));
+        jungleEmptyPositions.add(new Position(2,2));
+        jungleEmptyPositions.add(new Position(2,3));
+        jungleEmptyPositions.add(new Position(2,1));
+        System.out.println(jungleEmptyPositions);
+        System.out.println(((TreeSet<Position>) jungleEmptyPositions).first());
+        System.out.println(((TreeSet<Position>) jungleEmptyPositions).last());
+        System.out.println(((TreeSet<Position>) jungleEmptyPositions).higher(((TreeSet<Position>) jungleEmptyPositions).first()));
+        System.out.println(((TreeSet<Position>) jungleEmptyPositions).higher(((TreeSet<Position>) jungleEmptyPositions).last()));
 
     }
 }

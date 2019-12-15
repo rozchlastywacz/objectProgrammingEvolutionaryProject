@@ -16,6 +16,7 @@ public class AnimalGenotype {
         return genes;
     }
 
+    //region creating random i mixed genotype with normalization
     public static AnimalGenotype random() {
         List<Integer> genes = new LinkedList<>();
         for (int i = 0; i < GENOTYPE_LENGTH; i++) {
@@ -56,5 +57,9 @@ public class AnimalGenotype {
         genes.sort(Integer::compareTo);
         return Collections.unmodifiableList(new ArrayList<>(genes));
     }
+    //endregion
 
+    public int angle(){
+        return genes.get(RANDOM.nextInt(GENOTYPE_LENGTH));
+    }
 }
