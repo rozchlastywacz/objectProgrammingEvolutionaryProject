@@ -6,7 +6,8 @@ import java.util.*;
 
 public class SimulationEngine {
     private final TorusWorldMap worldMap;
-    private final List<Animal> animalList;
+    private final List<Animal> aliveAnimalList;
+    private final List<Animal> deadAnimalList;
     private final Set<Position> positionsOfInterest;
     private final int moveEnergy;
     private final int plantEnergy;
@@ -15,9 +16,10 @@ public class SimulationEngine {
     private static final Random RANDOM = new Random();
 
     //region creating engine
-    private SimulationEngine(TorusWorldMap worldMap, List<Animal> animalList, int moveEnergy, int plantEnergy, int startEnergy) {
+    private SimulationEngine(TorusWorldMap worldMap, List<Animal> aliveAnimalList, int moveEnergy, int plantEnergy, int startEnergy) {
         this.worldMap = worldMap;
-        this.animalList = animalList;
+        this.aliveAnimalList = aliveAnimalList;
+        this.deadAnimalList = new LinkedList<>();
         this.positionsOfInterest = new HashSet<>();
         this.moveEnergy = moveEnergy;
         this.plantEnergy = plantEnergy;
@@ -88,7 +90,9 @@ public class SimulationEngine {
                                 AnimalGenotype.random(),
                                 MapDirection.random(),
                                 position,
-                                startEnergy)
+                                startEnergy,
+                                null,
+                                null)
                 )
         );
 
@@ -105,14 +109,15 @@ public class SimulationEngine {
     }
 
     private void removeDeadAnimals() {
-        animalList.stream().filter(Animal::isDead).forEach(animal -> {
+        aliveAnimalList.stream().filter(Animal::isDead).forEach(animal -> {
             worldMap.removeAnimal(animal);
-            animalList.remove(animal);
+            aliveAnimalList.remove(animal);
+            deadAnimalList.add(animal);
         });
     }
 
     private void moveEveryAnimal() {
-        animalList.forEach(animal -> {
+        aliveAnimalList.forEach(animal -> {
             Position oldPosition = animal.getPosition();
             MapDirection oldOrientation = animal.getOrientation();
             MapDirection newOrientation = oldOrientation.rotateBy(animal.getGenotype().angle());
@@ -139,6 +144,8 @@ public class SimulationEngine {
 
                     int energy = plantEnergy/equallyStrong.size();
                     equallyStrong.forEach(animal -> animal.eatGrass(energy));
+
+                    worldMap.removeGrassFrom(position);
                 });
     }
 
@@ -149,20 +156,11 @@ public class SimulationEngine {
                     Animal firstParent = worldMap.getAnimalsAt(position).last();
                     Animal secondParent = worldMap.getAnimalsAt(position).lower(firstParent);
                     if(enoughEnergy(firstParent, secondParent)){
-                        Animal child = makeAChild(firstParent, secondParent);
-                        animalList.add(child);
+                        Animal child = firstParent.makeAChild(secondParent, worldMap.adjacent(firstParent.getPosition(), MapDirection.random()));
+                        aliveAnimalList.add(child);
                         worldMap.placeAnimal(child);
                     }
                 });
-    }
-
-    private Animal makeAChild(Animal firstParent, Animal secondParent) {
-        return new Animal(
-                AnimalGenotype.mix(firstParent.getGenotype(), secondParent.getGenotype()),
-                MapDirection.random(),
-                worldMap.adjacent(firstParent.getPosition(), MapDirection.random()),
-                firstParent.getEnergy()/2+secondParent.getEnergy()/2
-        );
     }
 
     private boolean enoughEnergy(Animal firstParent, Animal secondParent) {

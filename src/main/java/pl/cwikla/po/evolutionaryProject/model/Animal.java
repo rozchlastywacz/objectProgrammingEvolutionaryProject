@@ -11,14 +11,24 @@ public class Animal {
     private MapDirection orientation;
     private Position position;
     private int energy;
+    private int age;
+    private int numberOfChildren;
+    private int numberOfDescendants;
+    private Animal firstParent;
+    private Animal secondParent;
     private final List<AnimalObserver> observers;
 
-    public Animal(AnimalGenotype genotype, MapDirection orientation, Position position, int energy) {
+    public Animal(AnimalGenotype genotype, MapDirection orientation, Position position, int energy, Animal firstParent, Animal secondParent) {
         this.id = ID_GEN.incrementAndGet();
         this.genotype = genotype;
         this.orientation = orientation;
         this.position = position;
         this.energy = energy;
+        this.age = 0;
+        this.numberOfChildren = 0;
+        this.numberOfDescendants = 0;
+        this.firstParent = firstParent;
+        this.secondParent = secondParent;
         this.observers = new LinkedList<>();
     }
 
@@ -42,13 +52,42 @@ public class Animal {
     public MapDirection getOrientation() {
         return orientation;
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getNumberOfChildren() {
+        return numberOfChildren;
+    }
+
+    public int getNumberOfDescendants() {
+        return numberOfDescendants;
+    }
+
+    public Animal getFirstParent() {
+        return firstParent;
+    }
+
+    public Animal getSecondParent() {
+        return secondParent;
+    }
+
+    public void setNumberOfChildren(int numberOfChildren) {
+        this.numberOfChildren = numberOfChildren;
+    }
+
+    public void setNumberOfDescendants(int numberOfDescendants) {
+        this.numberOfDescendants = numberOfDescendants;
+    }
+
     //endregion
     //region Observers handling
     public void register(AnimalObserver observer) {
         observers.add(observer);
     }
 
-    public void unregister(AnimalObserver observer){
+    public void unregister(AnimalObserver observer) {
         observers.remove(observer);
     }
 
@@ -57,6 +96,7 @@ public class Animal {
             observer.onPositionChanged(this, oldPosition);
         }
     }
+
     //endregion
     //region Movement and life
     public void moveTo(Position position, MapDirection orientation, int energyDrained) {
@@ -64,15 +104,41 @@ public class Animal {
         this.position = position;
         this.orientation = orientation;
         this.energy -= energyDrained;
+        this.age++;
         notifyObservers(oldPosition);
     }
 
-    public boolean isDead(){
-        return energy <0;
+    public boolean isDead() {
+        return energy < 0;
     }
 
-    public void eatGrass(int energy){
+    public void eatGrass(int energy) {
         this.energy += energy;
     }
+
+    public Animal makeAChild(Animal secondParent, Position position) {
+        this.numberOfChildren++;
+        secondParent.setNumberOfChildren(secondParent.getNumberOfChildren() + 1);
+        this.incrementDescendants();
+        secondParent.incrementDescendants();
+
+        return new Animal(
+                AnimalGenotype.mix(this.getGenotype(), secondParent.getGenotype()),
+                MapDirection.random(),
+                position,
+                this.getEnergy() / 2 + secondParent.getEnergy() / 2,
+                this,
+                secondParent
+        );
+    }
+
+    private void incrementDescendants() {
+        this.numberOfDescendants++;
+        if (firstParent != null)
+            firstParent.incrementDescendants();
+        if (secondParent != null)
+            secondParent.incrementDescendants();
+    }
+
     //endregion
 }

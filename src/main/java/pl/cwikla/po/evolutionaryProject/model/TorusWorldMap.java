@@ -87,6 +87,11 @@ public class TorusWorldMap implements AnimalObserver {
     public TreeSet<Animal> getAnimalsAt(Position position) {
         return map.get(position).occupants;
     }
+
+    public Set<Position> getAllPositions(){
+        return map.keySet();
+    }
+
     //endregion
     //region Grass handling
     public void plantGrass(Position position) {
@@ -176,6 +181,14 @@ public class TorusWorldMap implements AnimalObserver {
             removeEmptyPosition(position);
             return new Cell();
         });
+    }
+
+    public boolean isInJungle(Position position){
+        return jungle.contains(position);
+    }
+
+    public Animal getTheStrongestAnimal(Position position){
+        return map.get(position).occupants.last();
     }
     //endregion
     //region private classes
