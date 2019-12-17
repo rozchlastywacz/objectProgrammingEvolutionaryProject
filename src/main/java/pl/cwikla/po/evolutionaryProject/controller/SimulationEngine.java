@@ -57,7 +57,12 @@ public class SimulationEngine {
         return worldMap;
     }
 
+    public List<Animal> getAliveAnimalList() {
+        return aliveAnimalList;
+    }
+
     //endregion
+
     //region growing plants
     private static void growPlants(TorusWorldMap worldMap) {
         TreeSet<Position> jungleEmptyPositions = (TreeSet<Position>) worldMap.getJungleEmptyPositions();
@@ -173,7 +178,8 @@ public class SimulationEngine {
     }
 
     private boolean enoughEnergy(Animal firstParent, Animal secondParent) {
-        return firstParent.getEnergy() >= startEnergy/2 && secondParent.getEnergy() >= startEnergy/2;
+        return firstParent != null && secondParent != null &&
+                firstParent.getEnergy() >= startEnergy/2 && secondParent.getEnergy() >= startEnergy/2;
     }
 
 
