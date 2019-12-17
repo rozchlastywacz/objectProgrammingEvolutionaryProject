@@ -104,7 +104,7 @@ public class TorusWorldMap implements AnimalObserver {
     }
 
     public boolean isGrassAt(Position position) {
-        return map.get(position).hasPlant;
+        return !map.get(position).isEmpty() && map.get(position).hasPlant;
     }
     //endregion
     //region Adjacent Position Getter
@@ -188,6 +188,8 @@ public class TorusWorldMap implements AnimalObserver {
     }
 
     public Animal getTheStrongestAnimal(Position position){
+        if(map.get(position).occupants.isEmpty())
+            return null;
         return map.get(position).occupants.last();
     }
     //endregion

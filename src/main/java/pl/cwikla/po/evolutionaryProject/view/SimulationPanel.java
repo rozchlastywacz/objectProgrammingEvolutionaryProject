@@ -13,11 +13,6 @@ public class SimulationPanel extends JPanel {
         this.setLayout(new BorderLayout());
 
         mapPanel = new JPanel();
-        Button mapPanel = new Button("X");
-        mapPanel.setBackground(Color.DARK_GRAY);
-        mapPanel.setForeground(Color.RED);
-        this.mapPanel.add(mapPanel);
-        this.add(this.mapPanel, BorderLayout.LINE_START);
 
         DefaultListModel dataModel = new DefaultListModel();
         dataModel.addElement("A1");

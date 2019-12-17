@@ -27,9 +27,6 @@ public class SimulationEngine {
     }
 
     public static SimulationEngine create(Config config) {
-//        Config config = new ObjectMapper()
-//                .readValue(ClassLoader
-//                        .getSystemResourceAsStream(fileName), Config.class);
 
         TorusWorldMap worldMap = TorusWorldMap.create(config.getMap());
         List<Animal> generationZero = adamsAndEves(
@@ -50,6 +47,14 @@ public class SimulationEngine {
                 config.getAnimals().getPlantEnergy(),
                 config.getAnimals().getStartEnergy()
         );
+    }
+
+    //endregion
+
+    //region getters
+
+    public TorusWorldMap getWorldMap() {
+        return worldMap;
     }
 
     //endregion
@@ -101,6 +106,8 @@ public class SimulationEngine {
     //endregion
 
     public void step() {
+        positionsOfInterest.clear();
+
         removeDeadAnimals();
         moveEveryAnimal();
         eatPlants();
@@ -109,10 +116,12 @@ public class SimulationEngine {
     }
 
     private void removeDeadAnimals() {
-        aliveAnimalList.stream().filter(Animal::isDead).forEach(animal -> {
-            worldMap.removeAnimal(animal);
-            aliveAnimalList.remove(animal);
-            deadAnimalList.add(animal);
+        aliveAnimalList.removeIf(animal -> {
+            if(animal.isDead()){
+                worldMap.removeAnimal(animal);
+                return true;
+            }
+            return false;
         });
     }
 
@@ -132,8 +141,8 @@ public class SimulationEngine {
                 .filter(worldMap::isGrassAt)
                 .forEach(position -> {
                     TreeSet<Animal> animals = worldMap.getAnimalsAt(position);
-                    Animal strongest = animals.last();
-                    Set<Animal> equallyStrong = new TreeSet<>();
+                    Animal strongest = worldMap.getTheStrongestAnimal(position);
+                    Set<Animal> equallyStrong = new HashSet<>();
                     equallyStrong.add(strongest);
                     Animal secondStrongest = animals.lower(strongest);
 
@@ -156,7 +165,7 @@ public class SimulationEngine {
                     Animal firstParent = worldMap.getAnimalsAt(position).last();
                     Animal secondParent = worldMap.getAnimalsAt(position).lower(firstParent);
                     if(enoughEnergy(firstParent, secondParent)){
-                        Animal child = firstParent.makeAChild(secondParent, worldMap.adjacent(firstParent.getPosition(), MapDirection.random()));
+                        Animal child = firstParent.makeAChild(secondParent, worldMap.adjacent(position, MapDirection.random()));
                         aliveAnimalList.add(child);
                         worldMap.placeAnimal(child);
                     }

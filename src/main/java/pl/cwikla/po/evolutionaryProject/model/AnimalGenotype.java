@@ -43,7 +43,8 @@ public class AnimalGenotype {
             sumGenes.put(i, 0);
         }
         for (int i = 0; i < GENOTYPE_LENGTH; i++) {
-            sumGenes.replace(i, sumGenes.get(i) + 1);
+            int gene = genes.get(i);
+            sumGenes.replace(gene, sumGenes.get(gene) + 1);
         }
         sumGenes.entrySet().stream()
                 .filter(a -> a.getValue() == 0)

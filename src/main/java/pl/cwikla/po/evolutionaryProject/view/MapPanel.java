@@ -1,6 +1,6 @@
 package pl.cwikla.po.evolutionaryProject.view;
 
-import pl.cwikla.po.evolutionaryProject.model.Position;
+import pl.cwikla.po.evolutionaryProject.model.Animal;
 import pl.cwikla.po.evolutionaryProject.model.TorusWorldMap;
 
 import javax.swing.*;
@@ -8,59 +8,37 @@ import java.awt.*;
 
 public class MapPanel extends JPanel {
     private TorusWorldMap map;
-    private int mapHeight;
-    private int mapWidth;
-    private JPanel[][] panelHolder;
 
-    public MapPanel(TorusWorldMap map){
+
+    public MapPanel(TorusWorldMap map) {
         this.map = map;
-        this.mapHeight = map.getHeight();
-        this.mapWidth = map.getWidth();
-        this.panelHolder = new JPanel[mapHeight][mapWidth];
-        this.setLayout(new GridLayout(mapHeight, mapWidth));
-        this.setMinimumSize(new Dimension(600, 600));
-        this.add(new Button(), 0, 0);
-        initializePanelHolder();
-    }
-
-    private void initializePanelHolder(){
-        for (int i = 0; i < mapHeight; i++) {
-            for (int j = 0; j < mapWidth; j++) {
-                panelHolder[i][j] = new JPanel();
-            }
-        }
+//        this.setMinimumSize(new Dimension(600, 600));
     }
 
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        int mapPanelWidth = this.getWidth();
-        int mapPanelHeight = this.getHeight();
+        Graphics2D g2 = (Graphics2D) g;
+        int xScale = this.getWidth() / map.getWidth();
+        int yScale = this.getHeight() / map.getHeight();
         map.getAllPositions().forEach(position -> {
-            //TODO
+            if (map.isInJungle(position)) {
+                g2.setColor(Color.CYAN);
+            } else {
+                g2.setColor(Color.BLUE);
+            }
+            g2.fillRect(position.getX(), position.getY(), xScale, yScale);
+            if (map.isGrassAt(position)) {
+                g2.setColor(Color.GREEN);
+            }
+            Animal animal = map.getTheStrongestAnimal(position);
+            if (animal != null) {
+                g2.setColor(Color.RED);
+            }
+            g2.fillRect(position.getX(), position.getY(), xScale / 2, yScale / 2);
         });
     }
 
-
-
-    private class MapPanelCell extends JPanel{
-        private Position position;
-
-        public MapPanelCell(Position position){
-            this.position = position;
-        }
-
-        @Override
-        protected void paintComponent(Graphics g){
-            super.paintComponent(g);
-            if(map.isInJungle(position)) g.setColor(Color.ORANGE);
-            else g.setColor(Color.PINK);
-
-            if(map.sufficientNumberOfAnimals(position)){
-                
-            }
-        }
-    }
 
 }
