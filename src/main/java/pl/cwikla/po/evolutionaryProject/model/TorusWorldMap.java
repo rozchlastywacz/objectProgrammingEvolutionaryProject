@@ -1,25 +1,31 @@
 package pl.cwikla.po.evolutionaryProject.model;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class TorusWorldMap implements AnimalObserver {
     private final int width;
     private final int height;
     private final Jungle jungle;
-    private final Map<Position, Cell> map;
+    public final Map<Position, Cell> map;
     private final Set<Position> savannaEmptyPositions;
     private final Set<Position> jungleEmptyPositions;
+    private final AtomicInteger plantsCounter = new AtomicInteger(0);
+
     //region Initialization
     private TorusWorldMap(int width, int height, Jungle jungle, Set<Position> savannaEmptyPositions, Set<Position> jungleEmptyPositions) {
         this.width = width;
         this.height = height;
         this.jungle = jungle;
-        this.map = new HashMap<>();
+        this.map = new ConcurrentHashMap<>();
         this.savannaEmptyPositions = savannaEmptyPositions;
         this.jungleEmptyPositions = jungleEmptyPositions;
     }
 
-    public static TorusWorldMap create(Config.MapConfig config){
+    public static TorusWorldMap create(Config.MapConfig config) {
         Jungle jungle = new Jungle(
                 config.getWidth(),
                 config.getHeight(),
@@ -37,6 +43,7 @@ public class TorusWorldMap implements AnimalObserver {
                 jungleEmptyPositions
         );
     }
+
     private static void initializeEmptyPositionSets(Config.MapConfig config, Jungle jungle, Set<Position> savannaEmptyPositions, Set<Position> jungleEmptyPositions) {
         for (int i = 0; i < config.getWidth(); i++) {
             for (int j = 0; j < config.getHeight(); j++) {
@@ -49,6 +56,7 @@ public class TorusWorldMap implements AnimalObserver {
             }
         }
     }
+
     //endregion
     //region Empty Positions handling
     private void addEmptyPosition(Position position) {
@@ -66,6 +74,7 @@ public class TorusWorldMap implements AnimalObserver {
             savannaEmptyPositions.remove(position);
         }
     }
+
     //endregion
     //region Getters
     public int getWidth() {
@@ -76,6 +85,10 @@ public class TorusWorldMap implements AnimalObserver {
         return height;
     }
 
+    public AtomicInteger getPlantsCounter() {
+        return plantsCounter;
+    }
+
     public Set<Position> getSavannaEmptyPositions() {
         return savannaEmptyPositions;
     }
@@ -84,28 +97,33 @@ public class TorusWorldMap implements AnimalObserver {
         return jungleEmptyPositions;
     }
 
-    public TreeSet<Animal> getAnimalsAt(Position position) {
-        return map.get(position).occupants;
+    public Set<Animal> getAnimalsAt(Position position) {
+        if (map.get(position) != null)
+            return map.get(position).occupants;
+        return Collections.emptySet();
     }
 
-    public Set<Position> getAllPositions(){
+    public Set<Position> getAllPositions() {
         return map.keySet();
     }
 
     //endregion
     //region Grass handling
     public void plantGrass(Position position) {
-        getOrCreate(position).hasPlant = true;
+        getOrCreate(position).hasPlant.set(true);
+        plantsCounter.incrementAndGet();
     }
 
     public void removeGrassFrom(Position position) {
-        map.get(position).hasPlant = false;
+        map.get(position).hasPlant.set(false);
+        plantsCounter.decrementAndGet();
         removeIfEmpty(position);
     }
 
     public boolean isGrassAt(Position position) {
-        return !map.get(position).isEmpty() && map.get(position).hasPlant;
+        return map.get(position) != null && !map.get(position).isEmpty() && map.get(position).hasPlant.get();
     }
+
     //endregion
     //region Adjacent Position Getter
     public Position adjacent(Position position, MapDirection direction) {
@@ -137,30 +155,47 @@ public class TorusWorldMap implements AnimalObserver {
                 throw new IllegalArgumentException("what kind of direction you want to map into vector?");
         }
     }
+
     //endregion
     //region Animal and other things handling
-    public boolean sufficientNumberOfAnimals(Position position){
-        return map.get(position).occupants.size() > 1;
-    }
-
-    public void placeAnimal(Animal animal){
-        place(animal);
-        animal.register(this);
-    }
-
-    public void removeAnimal(Animal animal){
-        removeFrom(animal, animal.getPosition());
-        animal.unregister(this);
-    }
-
     @Override
     public void onPositionChanged(Animal animal, Position oldPosition) {
         removeFrom(animal, oldPosition);
         place(animal);
     }
 
+    public boolean sufficientNumberOfAnimals(Position position) {
+        return map.get(position).occupants.size() > 1;
+    }
+
+    public void placeAnimal(Animal animal) {
+        place(animal);
+        animal.register(this);
+    }
+
+    private void place(Animal animal) {
+        getOrCreate(animal.getPosition()).occupants.add(animal);
+    }
+
+    private Cell getOrCreate(Position position) {
+        return map.computeIfAbsent(position, k -> {
+            removeEmptyPosition(position);
+            return new Cell();
+        });
+    }
+
+    public void removeAnimal(Animal animal) {
+        removeFrom(animal, animal.getPosition());
+        animal.unregister(this);
+    }
+
+
     private void removeFrom(Animal animal, Position position) {
-        map.get(position).occupants.remove(animal);
+        Set<Animal> occupants = map.get(position).occupants;
+        if (!occupants.remove(animal)) {
+            throw new IllegalStateException();
+        }
+
         removeIfEmpty(position);
     }
 
@@ -171,35 +206,40 @@ public class TorusWorldMap implements AnimalObserver {
         }
     }
 
-    private void place(Animal animal) {
-        getOrCreate(animal.getPosition()).occupants.add(animal);
-    }
 
-
-    private Cell getOrCreate(Position position) {
-        return map.computeIfAbsent(position, k -> {
-            removeEmptyPosition(position);
-            return new Cell();
-        });
-    }
-
-    public boolean isInJungle(Position position){
+    public boolean isInJungle(Position position) {
         return jungle.contains(position);
     }
 
-    public Animal getTheStrongestAnimal(Position position){
-        if(map.get(position).occupants.isEmpty())
-            return null;
-        return map.get(position).occupants.last();
+    public Optional<Animal> getTheStrongestAnimal(Position position) {
+        return map.get(position).alpha();
     }
+
+    public Collection<Animal> getTheStrongestGroup(Position position){
+        Animal alpha = getTheStrongestAnimal(position).get();
+        return map.get(position).occupants.stream().filter(a -> a.getEnergy() == alpha.getEnergy()).collect(Collectors.toList());
+    }
+
+    public Animal[] getTheStrongestPair(Position position){
+        return map.get(position).alphaMaleAndFemale();
+    }
+
     //endregion
     //region private classes
-    private static class Cell {
-        private boolean hasPlant = false;
-        private final TreeSet<Animal> occupants = new TreeSet<>(Comparator.comparing(Animal::getEnergy).thenComparing(Animal::getId));
+    public class Cell {
+        private AtomicBoolean hasPlant = new AtomicBoolean(false);
+        public final Set<Animal> occupants = new HashSet<>();
 
+
+        public Optional<Animal> alpha() {
+            return occupants.stream().max(Comparator.comparing(Animal::getEnergy));
+        }
+
+        public Animal[] alphaMaleAndFemale(){
+            return occupants.stream().sorted(Comparator.comparing(Animal::getEnergy).reversed()).limit(2).toArray(Animal[]::new);
+        }
         public boolean isEmpty() {
-            return !hasPlant && occupants.isEmpty();
+            return !hasPlant.get() && occupants.isEmpty();
         }
 
     }

@@ -2,6 +2,7 @@ package pl.cwikla.po.evolutionaryProject.model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Animal {
@@ -119,9 +120,8 @@ public class Animal {
     public Animal makeAChild(Animal secondParent, Position position) {
         this.numberOfChildren++;
         secondParent.setNumberOfChildren(secondParent.getNumberOfChildren() + 1);
-        this.incrementDescendants();
-        secondParent.incrementDescendants();
-
+        this.energy /= 2;
+        secondParent.energy /= 2;
         return new Animal(
                 AnimalGenotype.mix(this.getGenotype(), secondParent.getGenotype()),
                 MapDirection.random(),
@@ -132,13 +132,20 @@ public class Animal {
         );
     }
 
-    private void incrementDescendants() {
-        this.numberOfDescendants++;
-        if (firstParent != null)
-            firstParent.incrementDescendants();
-        if (secondParent != null)
-            secondParent.incrementDescendants();
-    }
 
     //endregion
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Animal)) return false;
+        Animal animal = (Animal) o;
+        return id == animal.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

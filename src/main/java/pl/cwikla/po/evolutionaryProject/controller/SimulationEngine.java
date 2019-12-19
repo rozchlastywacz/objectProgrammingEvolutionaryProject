@@ -3,6 +3,9 @@ package pl.cwikla.po.evolutionaryProject.controller;
 import pl.cwikla.po.evolutionaryProject.model.*;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static java.util.stream.Collectors.*;
 
 public class SimulationEngine {
     private final TorusWorldMap worldMap;
@@ -12,6 +15,7 @@ public class SimulationEngine {
     private final int moveEnergy;
     private final int plantEnergy;
     private final int startEnergy;
+    private final AtomicInteger day = new AtomicInteger(0);
 
     private static final Random RANDOM = new Random();
 
@@ -61,6 +65,36 @@ public class SimulationEngine {
         return aliveAnimalList;
     }
 
+    public Map.Entry<AnimalGenotype, List<Animal>> getAnimalsWithDominantGenotype(){
+        Map<AnimalGenotype, List<Animal>> collect = aliveAnimalList.stream()
+                .collect(groupingBy(Animal::getGenotype));
+//        System.err.println(collect.entrySet().stream().map(e -> e.getKey() + ":" + e.getValue().size()).collect(joining(";")));
+        return collect
+                .entrySet().stream()
+                .max(Comparator.comparing(a -> a.getValue().size()))
+                .get();
+    }
+
+    public AnimalGenotype getDominantGenotype(){
+        return getAnimalsWithDominantGenotype().getKey();
+    }
+
+
+    public double getAverageEnergy(){
+        return aliveAnimalList.stream().mapToInt(Animal::getEnergy).average().orElse(-1);
+    }
+
+    public double getAverageLifetime(){
+        return deadAnimalList.stream().mapToInt(Animal::getAge).average().orElse(-1);
+    }
+
+    public double getAverageNumberOfChildren(){
+        return aliveAnimalList.stream().mapToInt(Animal::getNumberOfChildren).average().orElse(-1);
+    }
+
+    public int getNumberOfCurrentDay(){
+        return day.get();
+    }
     //endregion
 
     //region growing plants
@@ -69,8 +103,13 @@ public class SimulationEngine {
         TreeSet<Position> savannaEmptyPositions = (TreeSet<Position>) worldMap.getSavannaEmptyPositions();
         Position inJungle = findEmptySpace(jungleEmptyPositions);
         Position onSavanna = findEmptySpace(savannaEmptyPositions);
-        if (inJungle != null) worldMap.plantGrass(inJungle);
-        if (onSavanna != null) worldMap.plantGrass(onSavanna);
+        if (inJungle != null) {
+            worldMap.plantGrass(inJungle);
+
+        }
+        if (onSavanna != null) {
+            worldMap.plantGrass(onSavanna);
+        }
     }
 
     private static Position findEmptySpace(TreeSet<Position> Positions) {
@@ -110,6 +149,8 @@ public class SimulationEngine {
     }
     //endregion
 
+
+    //region one step forward and two steps back
     public void step() {
         positionsOfInterest.clear();
 
@@ -118,12 +159,14 @@ public class SimulationEngine {
         eatPlants();
         procreate();
         growPlants(worldMap);
+        day.incrementAndGet();
     }
 
     private void removeDeadAnimals() {
         aliveAnimalList.removeIf(animal -> {
             if(animal.isDead()){
                 worldMap.removeAnimal(animal);
+                deadAnimalList.add(animal);
                 return true;
             }
             return false;
@@ -145,19 +188,9 @@ public class SimulationEngine {
         positionsOfInterest.stream()
                 .filter(worldMap::isGrassAt)
                 .forEach(position -> {
-                    TreeSet<Animal> animals = worldMap.getAnimalsAt(position);
-                    Animal strongest = worldMap.getTheStrongestAnimal(position);
-                    Set<Animal> equallyStrong = new HashSet<>();
-                    equallyStrong.add(strongest);
-                    Animal secondStrongest = animals.lower(strongest);
-
-                    while (secondStrongest != null && secondStrongest.getEnergy() == strongest.getEnergy()) {
-                        equallyStrong.add(secondStrongest);
-                        secondStrongest = animals.lower(secondStrongest);
-                    }
-
-                    int energy = plantEnergy/equallyStrong.size();
-                    equallyStrong.forEach(animal -> animal.eatGrass(energy));
+                    Collection<Animal> theStrongestGroup = worldMap.getTheStrongestGroup(position);
+                    int energy = plantEnergy/ theStrongestGroup.size();
+                    theStrongestGroup.forEach(animal -> animal.eatGrass(energy));
 
                     worldMap.removeGrassFrom(position);
                 });
@@ -167,8 +200,9 @@ public class SimulationEngine {
         positionsOfInterest.stream()
                 .filter(worldMap::sufficientNumberOfAnimals)
                 .forEach(position -> {
-                    Animal firstParent = worldMap.getAnimalsAt(position).last();
-                    Animal secondParent = worldMap.getAnimalsAt(position).lower(firstParent);
+                    Animal[] parents = worldMap.getTheStrongestPair(position);
+                    Animal firstParent = parents[0];
+                    Animal secondParent = parents[1];
                     if(enoughEnergy(firstParent, secondParent)){
                         Animal child = firstParent.makeAChild(secondParent, worldMap.adjacent(position, MapDirection.random()));
                         aliveAnimalList.add(child);
@@ -181,6 +215,6 @@ public class SimulationEngine {
         return firstParent != null && secondParent != null &&
                 firstParent.getEnergy() >= startEnergy/2 && secondParent.getEnergy() >= startEnergy/2;
     }
-
+    //endregion
 
 }
