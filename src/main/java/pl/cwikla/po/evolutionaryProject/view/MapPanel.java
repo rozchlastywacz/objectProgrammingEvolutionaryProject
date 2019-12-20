@@ -1,15 +1,17 @@
 package pl.cwikla.po.evolutionaryProject.view;
 
 import pl.cwikla.po.evolutionaryProject.model.Animal;
+import pl.cwikla.po.evolutionaryProject.model.AnimalGenotype;
 import pl.cwikla.po.evolutionaryProject.model.Position;
 import pl.cwikla.po.evolutionaryProject.model.TorusWorldMap;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MapPanel extends JPanel {
     private TorusWorldMap map;
@@ -17,6 +19,9 @@ public class MapPanel extends JPanel {
     private int startEnergy;
 
     private Animal trackedAnimal;
+
+    private List<Animal> dominantGenotypeAnimals;
+    private AtomicBoolean showDominantGenotypeAnimals = new AtomicBoolean(false);
 
     public MapPanel(TorusWorldMap map, int startEnergy) {
         this.map = map;
@@ -73,6 +78,12 @@ public class MapPanel extends JPanel {
             }
 
         });
+        if (showDominantGenotypeAnimals.get()) {
+            dominantGenotypeAnimals.forEach(animal -> {
+                JButton button = buttonMap.get(animal.getPosition());
+                button.setBackground(new Color(200,0,200));
+            });
+        }
         if(trackedAnimal != null){
             buttonMap.get(trackedAnimal.getPosition()).setBackground(new Color(255,0,0));
         }
@@ -81,5 +92,14 @@ public class MapPanel extends JPanel {
 
     public Animal getTrackedAnimal() {
         return trackedAnimal;
+    }
+
+    public void setDominantGenotypeAnimals(List<Animal> dominantGenotypeAnimals) {
+        this.dominantGenotypeAnimals = dominantGenotypeAnimals;
+    }
+
+    public void toggleShowDominantGenotypes(){
+        showDominantGenotypeAnimals.set(!showDominantGenotypeAnimals.get());
+        this.repaint();
     }
 }

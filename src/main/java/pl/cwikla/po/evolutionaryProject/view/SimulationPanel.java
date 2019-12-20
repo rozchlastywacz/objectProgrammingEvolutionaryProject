@@ -8,6 +8,8 @@ import pl.cwikla.po.evolutionaryProject.model.Config;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SimulationPanel extends JPanel {
     private Simulator simulator;
@@ -25,6 +27,8 @@ public class SimulationPanel extends JPanel {
     private JLabel trackedAnimalID;
     private JLabel trackedAnimalChildren;
     private JLabel trackedAnimalDeathTime;
+
+    private Button toggleDominantGenes;
 
     public SimulationPanel(Simulator simulator, Config config) {
         this.simulator = simulator;
@@ -48,6 +52,7 @@ public class SimulationPanel extends JPanel {
         trackedAnimalChildren = new JLabel();
         trackedAnimalDeathTime = new JLabel();
 
+        toggleDominantGenes = new Button("Toggle dominant genes");
 
         delaySlider.addChangeListener((ChangeEvent e) -> simulator.setStepDelay(delaySlider.getValue()));
         this.setLayout(new FlowLayout());
@@ -148,6 +153,15 @@ public class SimulationPanel extends JPanel {
 
         constraints.gridx = 1;
         cockpit.add(trackedAnimalDeathTime, constraints);
+
+        toggleDominantGenes.addActionListener(e -> {
+            mapPanel.toggleShowDominantGenotypes();
+            mapPanel.setDominantGenotypeAnimals(simulator.getSimulationEngine().getAnimalsWithDominantGenotype().getValue());
+        });
+        constraints.gridy = 14;
+        constraints.gridx = 0;
+        constraints.gridwidth = 2;
+        cockpit.add(toggleDominantGenes);
 
         //endregion
 
