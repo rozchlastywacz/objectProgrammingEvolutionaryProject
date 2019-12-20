@@ -32,7 +32,6 @@ public class Config {
         private int width;
         private int height;
         private double jungleRatio;
-        private List<Position> plants;
 
         //region Getters And Setters
         public int getWidth() {
@@ -59,13 +58,6 @@ public class Config {
             this.jungleRatio = jungleRatio;
         }
 
-        public List<Position> getPlants() {
-            return plants;
-        }
-
-        public void setPlants(List<Position> plants) {
-            this.plants = plants;
-        }
         //endregion
     }
 

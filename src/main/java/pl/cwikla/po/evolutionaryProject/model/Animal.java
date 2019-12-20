@@ -15,6 +15,7 @@ public class Animal {
     private int age;
     private int numberOfChildren;
     private int numberOfDescendants;
+    private int dayOfDeath;
     private Animal firstParent;
     private Animal secondParent;
     private final List<AnimalObserver> observers;
@@ -28,12 +29,18 @@ public class Animal {
         this.age = 0;
         this.numberOfChildren = 0;
         this.numberOfDescendants = 0;
+        this.dayOfDeath = 0;
         this.firstParent = firstParent;
         this.secondParent = secondParent;
         this.observers = new LinkedList<>();
     }
 
     //region Getters and Setters
+
+    public int getDayOfDeath() {
+        return dayOfDeath;
+    }
+
     public int getEnergy() {
         return energy;
     }
@@ -80,6 +87,10 @@ public class Animal {
 
     public void setNumberOfDescendants(int numberOfDescendants) {
         this.numberOfDescendants = numberOfDescendants;
+    }
+
+    public void setDayOfDeath(int dayOfDeath) {
+        this.dayOfDeath = dayOfDeath;
     }
 
     //endregion
@@ -132,9 +143,7 @@ public class Animal {
         );
     }
 
-
     //endregion
-
 
     @Override
     public boolean equals(Object o) {
@@ -148,4 +157,5 @@ public class Animal {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

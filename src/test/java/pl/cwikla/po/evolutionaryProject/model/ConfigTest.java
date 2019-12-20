@@ -3,11 +3,6 @@ package pl.cwikla.po.evolutionaryProject.model;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class ConfigTest {
 
     @Test

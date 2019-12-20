@@ -66,10 +66,8 @@ public class SimulationEngine {
     }
 
     public Map.Entry<AnimalGenotype, List<Animal>> getAnimalsWithDominantGenotype(){
-        Map<AnimalGenotype, List<Animal>> collect = aliveAnimalList.stream()
-                .collect(groupingBy(Animal::getGenotype));
-//        System.err.println(collect.entrySet().stream().map(e -> e.getKey() + ":" + e.getValue().size()).collect(joining(";")));
-        return collect
+        return aliveAnimalList.stream()
+                .collect(groupingBy(Animal::getGenotype))
                 .entrySet().stream()
                 .max(Comparator.comparing(a -> a.getValue().size()))
                 .get();
@@ -125,6 +123,7 @@ public class SimulationEngine {
     }
 
     //endregion
+
     //region first animals creation
     private static List<Animal> adamsAndEves(int numberOfAnimalsAtStart, int startEnergy, int width, int height) {
         Set<Position> randomPositions = new HashSet<>();
@@ -149,7 +148,6 @@ public class SimulationEngine {
     }
     //endregion
 
-
     //region one step forward and two steps back
     public void step() {
         positionsOfInterest.clear();
@@ -167,6 +165,7 @@ public class SimulationEngine {
             if(animal.isDead()){
                 worldMap.removeAnimal(animal);
                 deadAnimalList.add(animal);
+                animal.setDayOfDeath(day.get());
                 return true;
             }
             return false;

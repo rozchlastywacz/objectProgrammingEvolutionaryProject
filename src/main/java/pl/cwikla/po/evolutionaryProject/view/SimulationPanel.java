@@ -2,6 +2,7 @@ package pl.cwikla.po.evolutionaryProject.view;
 
 import pl.cwikla.po.evolutionaryProject.controller.SimulationEngine;
 import pl.cwikla.po.evolutionaryProject.controller.Simulator;
+import pl.cwikla.po.evolutionaryProject.model.Animal;
 import pl.cwikla.po.evolutionaryProject.model.Config;
 
 import javax.swing.*;
@@ -21,14 +22,18 @@ public class SimulationPanel extends JPanel {
     private JLabel averageNumberOfChildren;
     private JLabel currentDay;
 
-    public SimulationPanel(Simulator simulator, Config config){
+    private JLabel trackedAnimalID;
+    private JLabel trackedAnimalChildren;
+    private JLabel trackedAnimalDeathTime;
+
+    public SimulationPanel(Simulator simulator, Config config) {
         this.simulator = simulator;
         mapPanel = new MapPanel(simulator.getSimulationEngine().getWorldMap(), config.getAnimals().getStartEnergy());
         initUI();
     }
 
     private void initUI() {
-        delaySlider = new JSlider(0,100,0);
+        delaySlider = new JSlider(0, 500, 0);
         toggle = new Button("Toggle");
         numberOfAnimals = new JLabel();
         numberOfPlants = new JLabel();
@@ -39,11 +44,14 @@ public class SimulationPanel extends JPanel {
         averageNumberOfChildren = new JLabel();
         currentDay = new JLabel();
 
+        trackedAnimalID = new JLabel();
+        trackedAnimalChildren = new JLabel();
+        trackedAnimalDeathTime = new JLabel();
+
 
         delaySlider.addChangeListener((ChangeEvent e) -> simulator.setStepDelay(delaySlider.getValue()));
         this.setLayout(new FlowLayout());
         this.add(mapPanel);
-//        mapPanel.setPreferredSize(new Dimension(600,600));
 
         //region stats and so on
 
@@ -52,7 +60,6 @@ public class SimulationPanel extends JPanel {
         GridBagConstraints constraints = new GridBagConstraints();
 
         toggle.addActionListener(e -> simulator.toggleSimulation());
-//        constraints.weightx = 0.5;
         constraints.gridwidth = 2;
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.gridx = 0;
@@ -66,14 +73,14 @@ public class SimulationPanel extends JPanel {
         constraints.gridwidth = 1;
         constraints.gridy = 2;
         constraints.weightx = 0.5;
-        cockpit.add(new JLabel("Number of animals:"), constraints);
+        cockpit.add(new JLabel("Number of animals"), constraints);
 
         constraints.gridx = 1;
         cockpit.add(numberOfAnimals, constraints);
 
         constraints.gridy = 3;
         constraints.gridx = 0;
-        cockpit.add(new JLabel("Number of plants:"), constraints);
+        cockpit.add(new JLabel("Number of plants"), constraints);
 
         constraints.gridx = 1;
         cockpit.add(numberOfPlants, constraints);
@@ -92,10 +99,10 @@ public class SimulationPanel extends JPanel {
         constraints.gridwidth = 1;
         cockpit.add(new JLabel("Average energy"), constraints);
 
-        constraints.gridx =1;
+        constraints.gridx = 1;
         cockpit.add(averageEnergy, constraints);
 
-        constraints.gridy= 7;
+        constraints.gridy = 7;
         constraints.gridx = 0;
         cockpit.add(new JLabel("Average lifetime"), constraints);
 
@@ -115,6 +122,33 @@ public class SimulationPanel extends JPanel {
 
         constraints.gridx = 1;
         cockpit.add(currentDay, constraints);
+
+        constraints.gridy = 10;
+        constraints.gridx = 0;
+        constraints.gridwidth = 2;
+        cockpit.add(new JLabel("Tracked Animal", SwingConstants.CENTER), constraints);
+
+        constraints.gridy = 11;
+        constraints.gridwidth = 1;
+        cockpit.add(new JLabel("ID"), constraints);
+
+        constraints.gridx = 1;
+        cockpit.add(trackedAnimalID, constraints);
+
+        constraints.gridy = 12;
+        constraints.gridx = 0;
+        cockpit.add(new JLabel("Children"), constraints);
+
+        constraints.gridx = 1;
+        cockpit.add(trackedAnimalChildren, constraints);
+
+        constraints.gridy = 13;
+        constraints.gridx = 0;
+        cockpit.add(new JLabel("Day of death"), constraints);
+
+        constraints.gridx = 1;
+        cockpit.add(trackedAnimalDeathTime, constraints);
+
         //endregion
 
 
@@ -124,7 +158,7 @@ public class SimulationPanel extends JPanel {
         this.add(cockpit);
     }
 
-    public void repaintMapPanel(){
+    public void repaintMapPanel() {
         synchronized (mapPanel) {
             mapPanel.repaint();
             try {
@@ -137,7 +171,7 @@ public class SimulationPanel extends JPanel {
     }
 
 
-    private void refreshStats(){
+    private void refreshStats() {
         SimulationEngine simulationEngine = simulator.getSimulationEngine();
         numberOfAnimals.setText(String.valueOf(simulationEngine.getAliveAnimalList().size()));
         numberOfPlants.setText(String.valueOf(simulationEngine.getWorldMap().getPlantsCounter()));
@@ -146,5 +180,14 @@ public class SimulationPanel extends JPanel {
         averageLifetime.setText(String.format("%.2f", simulationEngine.getAverageLifetime()));
         averageNumberOfChildren.setText(String.format("%.2f", simulationEngine.getAverageNumberOfChildren()));
         currentDay.setText(String.valueOf(simulationEngine.getNumberOfCurrentDay()));
+        Animal trackedAnimal = mapPanel.getTrackedAnimal();
+        if (trackedAnimal != null) {
+            trackedAnimalID.setText(String.valueOf(trackedAnimal.getId()));
+            trackedAnimalChildren.setText(String.valueOf(trackedAnimal.getNumberOfChildren()));
+            if (trackedAnimal.isDead())
+                trackedAnimalDeathTime.setText(String.valueOf(trackedAnimal.getDayOfDeath()));
+            else
+                trackedAnimalDeathTime.setText(String.valueOf(trackedAnimal.getAge()));
+        }
     }
 }

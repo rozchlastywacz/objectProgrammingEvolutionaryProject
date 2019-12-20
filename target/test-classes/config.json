@@ -1,23 +1,13 @@
 {
   "map": {
-    "width": 15,
-    "height": 10,
-    "jungleRatio": 0.2,
-    "plants": [
-      {
-        "x": 3,
-        "y": 4
-      },
-      {
-        "x": 1,
-        "y": 2
-      }
-    ]
+    "width": 40,
+    "height": 40,
+    "jungleRatio": 0.2
   },
   "animals":{
-    "startEnergy": 15,
-    "moveEnergy": 2,
-    "plantEnergy": 5,
-    "numberOfAnimalsAtStart": 10
+    "startEnergy": 10,
+    "moveEnergy": 1,
+    "plantEnergy": 70,
+    "numberOfAnimalsAtStart": 300
   }
 }

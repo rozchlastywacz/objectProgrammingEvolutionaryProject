@@ -17,10 +17,6 @@ public class AnimalGenotype {
         this.genes = genes;
     }
 
-    public List<Gene> getGenes() {
-        return genes;
-    }
-
     //region creating random i mixed genotype with normalization
     public static AnimalGenotype random() {
         List<Gene> genes = new LinkedList<>();
@@ -71,7 +67,6 @@ public class AnimalGenotype {
 
     @Override
     public String toString() {
-//        return genes.stream().map(Object::toString).collect(joining(""));
         return  genes.stream()
                 .collect(groupingBy(Function.identity(), TreeMap::new, counting()))
                 .entrySet().stream()
