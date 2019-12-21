@@ -35,13 +35,6 @@ public class Position {
         return Objects.hash(x, y);
     }
 
-    public Position add(Position other){
-        return new Position(
-                this.x+other.x,
-                this.y+other.y
-        );
-    }
-
     public int getX() {
         return x;
     }

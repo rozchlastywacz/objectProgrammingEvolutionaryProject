@@ -1,7 +1,6 @@
 package pl.cwikla.po.evolutionaryProject.model;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -20,7 +19,7 @@ public class TorusWorldMap implements AnimalObserver {
         this.width = width;
         this.height = height;
         this.jungle = jungle;
-        this.map = new ConcurrentHashMap<>();
+        this.map = new HashMap<>();
         this.savannaEmptyPositions = savannaEmptyPositions;
         this.jungleEmptyPositions = jungleEmptyPositions;
     }
@@ -30,8 +29,8 @@ public class TorusWorldMap implements AnimalObserver {
                 config.getWidth(),
                 config.getHeight(),
                 config.getJungleRatio());
-        Set<Position> savannaEmptyPositions = new TreeSet<>(Comparator.comparing(Position::getX).thenComparing(Position::getY));
-        Set<Position> jungleEmptyPositions = new TreeSet<>(Comparator.comparing(Position::getX).thenComparing(Position::getY));
+        Set<Position> savannaEmptyPositions = new HashSet<>();
+        Set<Position> jungleEmptyPositions = new HashSet<>();
 
         initializeEmptyPositionSets(config, jungle, savannaEmptyPositions, jungleEmptyPositions);
 

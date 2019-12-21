@@ -108,8 +108,8 @@ public class SimulationEngine {
 
     //region growing plants
     private static void growPlants(TorusWorldMap worldMap) {
-        TreeSet<Position> jungleEmptyPositions = (TreeSet<Position>) worldMap.getJungleEmptyPositions();
-        TreeSet<Position> savannaEmptyPositions = (TreeSet<Position>) worldMap.getSavannaEmptyPositions();
+        Set<Position> jungleEmptyPositions = worldMap.getJungleEmptyPositions();
+        Set<Position> savannaEmptyPositions = worldMap.getSavannaEmptyPositions();
         Position inJungle = findEmptySpace(jungleEmptyPositions);
         Position onSavanna = findEmptySpace(savannaEmptyPositions);
         if (inJungle != null) {
@@ -121,7 +121,7 @@ public class SimulationEngine {
         }
     }
 
-    private static Position findEmptySpace(TreeSet<Position> Positions) {
+    private static Position findEmptySpace(Set<Position> Positions) {
         if (Positions.isEmpty()) return null;
         int random = RANDOM.nextInt(Positions.size());
         int i = 0;
