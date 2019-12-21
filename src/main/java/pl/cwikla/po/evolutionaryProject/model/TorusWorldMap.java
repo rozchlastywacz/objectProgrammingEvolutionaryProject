@@ -10,7 +10,7 @@ public class TorusWorldMap implements AnimalObserver {
     private final int width;
     private final int height;
     private final Jungle jungle;
-    public final Map<Position, Cell> map;
+    private final Map<Position, Cell> map;
     private final Set<Position> savannaEmptyPositions;
     private final Set<Position> jungleEmptyPositions;
     private final AtomicInteger plantsCounter = new AtomicInteger(0);
@@ -226,19 +226,19 @@ public class TorusWorldMap implements AnimalObserver {
 
     //endregion
     //region private classes
-    public class Cell {
+    private static class Cell {
         private AtomicBoolean hasPlant = new AtomicBoolean(false);
-        public final Set<Animal> occupants = new HashSet<>();
+        private final Set<Animal> occupants = new HashSet<>();
 
 
-        public Optional<Animal> alpha() {
+        private Optional<Animal> alpha() {
             return occupants.stream().max(Comparator.comparing(Animal::getEnergy));
         }
 
-        public Animal[] alphaMaleAndFemale(){
+        private Animal[] alphaMaleAndFemale(){
             return occupants.stream().sorted(Comparator.comparing(Animal::getEnergy).reversed()).limit(2).toArray(Animal[]::new);
         }
-        public boolean isEmpty() {
+        private boolean isEmpty() {
             return !hasPlant.get() && occupants.isEmpty();
         }
 
@@ -251,7 +251,7 @@ public class TorusWorldMap implements AnimalObserver {
         private final int highY;
 
 
-        public Jungle(int width, int height, double ratio) {
+        private Jungle(int width, int height, double ratio) {
             int jungleWidth = (int) Math.round(width * Math.sqrt(ratio));
             lowX = (width - jungleWidth) / 2;
             highX = lowX + jungleWidth - 1;
@@ -260,7 +260,7 @@ public class TorusWorldMap implements AnimalObserver {
             highY = lowY + jungleHeight - 1;
         }
 
-        public boolean contains(Position position) {
+        private boolean contains(Position position) {
             int x = position.getX();
             int y = position.getY();
             return lowX <= x && x <= highX

@@ -27,8 +27,7 @@ public class MapPanel extends JPanel {
         this.map = map;
         buttonMap = new HashMap<>();
         this.startEnergy = startEnergy;
-        this.setMinimumSize(new Dimension(540, 540));
-        this.setPreferredSize(new Dimension(map.getWidth() * 13, map.getHeight() * 13));
+        this.setPreferredSize(new Dimension(500, 500));
         this.setLayout(new GridLayout(map.getWidth(), map.getHeight()));
         initializeButtons();
     }
@@ -48,7 +47,6 @@ public class MapPanel extends JPanel {
     @Override
     protected synchronized void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
         buttonMap.forEach((position, button) -> {
             button.setToolTipText("You really thinks that`s an animal?");
             for (ActionListener actionListener : button.getActionListeners()) {

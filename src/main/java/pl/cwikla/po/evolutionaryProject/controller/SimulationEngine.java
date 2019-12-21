@@ -16,6 +16,7 @@ public class SimulationEngine {
     private final int plantEnergy;
     private final int startEnergy;
     private final AtomicInteger day = new AtomicInteger(0);
+    private final Statistics statistics;
 
     private static final Random RANDOM = new Random();
 
@@ -28,6 +29,7 @@ public class SimulationEngine {
         this.moveEnergy = moveEnergy;
         this.plantEnergy = plantEnergy;
         this.startEnergy = startEnergy;
+        this.statistics = new Statistics();
     }
 
     public static SimulationEngine create(Config config) {
@@ -92,6 +94,10 @@ public class SimulationEngine {
 
     public int getNumberOfCurrentDay(){
         return day.get();
+    }
+
+    public Statistics getStatistics(){
+        return statistics;
     }
     //endregion
 
@@ -158,6 +164,11 @@ public class SimulationEngine {
         procreate();
         growPlants(worldMap);
         day.incrementAndGet();
+        statistics.updatePrimitives(day.get(),
+                aliveAnimalList.size(),
+                getAverageLifetime(),
+                getAverageEnergy(),
+                getAverageNumberOfChildren());
     }
 
     private void removeDeadAnimals() {
@@ -206,6 +217,8 @@ public class SimulationEngine {
                         Animal child = firstParent.makeAChild(secondParent, worldMap.adjacent(position, MapDirection.random()));
                         aliveAnimalList.add(child);
                         worldMap.placeAnimal(child);
+                        statistics.updateGenotypes(child.getGenotype());
+                        statistics.updateNumberOfAnimals();
                     }
                 });
     }

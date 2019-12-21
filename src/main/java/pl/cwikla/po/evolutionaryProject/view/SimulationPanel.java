@@ -7,9 +7,8 @@ import pl.cwikla.po.evolutionaryProject.model.Config;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
+import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SimulationPanel extends JPanel {
     private Simulator simulator;
@@ -19,6 +18,7 @@ public class SimulationPanel extends JPanel {
     private JLabel numberOfAnimals;
     private JLabel numberOfPlants;
     private JLabel dominantGenotype;
+    private JLabel dominantGenotypeNumber;
     private JLabel averageEnergy;
     private JLabel averageLifetime;
     private JLabel averageNumberOfChildren;
@@ -29,6 +29,8 @@ public class SimulationPanel extends JPanel {
     private JLabel trackedAnimalDeathTime;
 
     private Button toggleDominantGenes;
+    private Button saveStatisticsToFile;
+
 
     public SimulationPanel(Simulator simulator, Config config) {
         this.simulator = simulator;
@@ -42,6 +44,7 @@ public class SimulationPanel extends JPanel {
         numberOfAnimals = new JLabel();
         numberOfPlants = new JLabel();
         dominantGenotype = new JLabel();
+        dominantGenotypeNumber = new JLabel();
         dominantGenotype.setHorizontalAlignment(JLabel.CENTER);
         averageEnergy = new JLabel();
         averageLifetime = new JLabel();
@@ -54,22 +57,27 @@ public class SimulationPanel extends JPanel {
 
         toggleDominantGenes = new Button("Toggle dominant genes");
 
+        saveStatisticsToFile = new Button("Save statistics to file");
+
         delaySlider.addChangeListener((ChangeEvent e) -> simulator.setStepDelay(delaySlider.getValue()));
         this.setLayout(new FlowLayout());
         this.add(mapPanel);
 
         //region stats and so on
-
         JPanel cockpit = new JPanel();
         cockpit.setLayout(new GridBagLayout());
+        cockpit.setBorder(new BorderUIResource.LineBorderUIResource(Color.BLACK));
         GridBagConstraints constraints = new GridBagConstraints();
 
         toggle.addActionListener(e -> simulator.toggleSimulation());
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
+        constraints.weightx = 0.5;
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.gridx = 0;
         constraints.gridy = 0;
         cockpit.add(toggle, constraints);
+
+        constraints.weightx = 1;
 
         constraints.gridy = 1;
         cockpit.add(delaySlider, constraints);
@@ -90,12 +98,15 @@ public class SimulationPanel extends JPanel {
         constraints.gridx = 1;
         cockpit.add(numberOfPlants, constraints);
 
-
         constraints.gridy = 4;
         constraints.gridx = 0;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
         cockpit.add(new JLabel("Dominant Genotype"), constraints);
 
+        constraints.gridx = 1;
+        cockpit.add(dominantGenotypeNumber, constraints);
+
+        constraints.gridwidth = 2;
         constraints.gridy = 5;
         constraints.gridx = 0;
         cockpit.add(dominantGenotype, constraints);
@@ -130,7 +141,7 @@ public class SimulationPanel extends JPanel {
 
         constraints.gridy = 10;
         constraints.gridx = 0;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
         cockpit.add(new JLabel("Tracked Animal", SwingConstants.CENTER), constraints);
 
         constraints.gridy = 11;
@@ -158,17 +169,21 @@ public class SimulationPanel extends JPanel {
             mapPanel.toggleShowDominantGenotypes();
             mapPanel.setDominantGenotypeAnimals(simulator.getSimulationEngine().getAnimalsWithDominantGenotype().getValue());
         });
+        constraints.gridy = 0;
+        constraints.gridx = 1;
+        constraints.gridwidth = 1;
+        cockpit.add(toggleDominantGenes, constraints);
+
+
+        saveStatisticsToFile.addActionListener(e ->{
+            simulator.getSimulationEngine().getStatistics().saveToFile();
+        });
         constraints.gridy = 14;
         constraints.gridx = 0;
         constraints.gridwidth = 2;
-        cockpit.add(toggleDominantGenes);
-
+        cockpit.add(saveStatisticsToFile, constraints);
         //endregion
-
-
         //endregion
-
-
         this.add(cockpit);
     }
 
@@ -189,6 +204,7 @@ public class SimulationPanel extends JPanel {
         SimulationEngine simulationEngine = simulator.getSimulationEngine();
         numberOfAnimals.setText(String.valueOf(simulationEngine.getAliveAnimalList().size()));
         numberOfPlants.setText(String.valueOf(simulationEngine.getWorldMap().getPlantsCounter()));
+        dominantGenotypeNumber.setText(String.valueOf(simulationEngine.getAnimalsWithDominantGenotype().getValue().size()));
         dominantGenotype.setText(simulationEngine.getDominantGenotype().toString());
         averageEnergy.setText(String.format("%.2f", simulationEngine.getAverageEnergy()));
         averageLifetime.setText(String.format("%.2f", simulationEngine.getAverageLifetime()));

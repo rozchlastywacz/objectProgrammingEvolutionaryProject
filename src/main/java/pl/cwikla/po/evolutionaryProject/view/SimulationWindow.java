@@ -17,7 +17,6 @@ public class SimulationWindow {
         mainWindow.setLayout(new FlowLayout());
         mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainWindow.setMinimumSize(new Dimension(100, 100));
-//        mainWindow.setMaximumSize(new Dimension(1920,1080));
 
         innerWindow = new JPanel();
         innerWindow.setLayout(new GridLayout(0,2));
@@ -25,7 +24,7 @@ public class SimulationWindow {
         scrollPane.setHorizontalScrollBar(new JScrollBar(JScrollBar.VERTICAL));
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(1800,1000));
         mainWindow.add(scrollPane);
         //region Menu Bar
