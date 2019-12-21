@@ -69,10 +69,11 @@ public class Statistics {
     public void saveToFile() {
         File file = new File("statistics.txt");
         try {
-            file.createNewFile();
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            writer.write(this.toString());
-            writer.close();
+            if(file.createNewFile()) {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+                writer.write(this.toString());
+                writer.close();
+            }
         } catch (IOException e) {
             System.out.println("File not created");
         }

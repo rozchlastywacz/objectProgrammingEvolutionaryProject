@@ -8,11 +8,12 @@ import pl.cwikla.po.evolutionaryProject.model.Config;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 
 public class SimulationPanel extends JPanel {
-    private Simulator simulator;
-    private MapPanel mapPanel;
+    private final Simulator simulator;
+    private final MapPanel mapPanel;
     private JSlider delaySlider;
     private Button toggle;
     private JLabel numberOfAnimals;

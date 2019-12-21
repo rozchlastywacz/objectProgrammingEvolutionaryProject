@@ -16,7 +16,7 @@ public class SimulationWindow {
         mainWindow = new JFrame("Evolutionary Project");
         mainWindow.setLayout(new FlowLayout());
         mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        mainWindow.setMinimumSize(new Dimension(100, 100));
+        mainWindow.setMinimumSize(new Dimension(400, 400));
 
         innerWindow = new JPanel();
         innerWindow.setLayout(new GridLayout(0, 2));
@@ -30,8 +30,8 @@ public class SimulationWindow {
         //region Menu Bar
 
         JMenuBar menuBar = new JMenuBar();
-        JMenu configMenu = new JMenu("Configuration");
-        JMenuItem addSimulationMenuItem = new JMenuItem("Add new simulation");
+        JMenu configMenu = new JMenu("Click here, leader of Muses!");
+        JMenuItem addSimulationMenuItem = new JMenuItem("Add new simulation based on config.json");
         addSimulationMenuItem.addActionListener(e -> addSimulation());
         configMenu.add(addSimulationMenuItem);
         menuBar.add(configMenu);

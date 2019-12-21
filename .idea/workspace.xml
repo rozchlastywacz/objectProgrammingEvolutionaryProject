@@ -4,12 +4,12 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/SimulationEngine.java" line="202" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2319696f-0a72-4c96-bf94-279821a318ce" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/SimulationEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/SimulationEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/TorusWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/TorusWorldMap.java" afterDir="false" />
-    </list>
     <list id="d8fc58ba-e10f-425f-a866-43806f7bd51f" name="Revert &quot;initial commit on local repository&quot;" comment="Revert &quot;initial commit on local repository&quot;&#10;&#10;This reverts commit 434a9fe" />
+    <list default="true" id="2319696f-0a72-4c96-bf94-279821a318ce" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Statistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationWindow.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,33 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TorusWorldMap.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TorusWorldMap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/TorusWorldMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="72" column="51" lean-forward="true" selection-start-line="72" selection-start-column="51" selection-end-line="72" selection-end-column="51" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3129#3130#0" expanded="true" />
-                <element signature="e#3165#3166#0" expanded="true" />
-                <element signature="e#6825#6826#0" expanded="true" />
-                <element signature="e#6873#6874#0" expanded="true" />
-                <element signature="e#7017#7018#0" expanded="true" />
-                <element signature="e#7078#7079#0" expanded="true" />
-                <element signature="e#7519#7520#0" expanded="true" />
-                <element signature="e#7613#7614#0" expanded="true" />
-                <element signature="e#7837#7838#0" expanded="true" />
-                <element signature="e#7906#7907#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Position.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Position.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+            <state relative-caret-position="-2389">
+              <caret line="71" column="16" lean-forward="true" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,33 +33,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Animal.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Animal.java">
+      <file leaf-file-name="Statistics.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Statistics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-179">
-              <caret line="80" column="27" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
+            <state relative-caret-position="331">
+              <caret line="72" column="66" lean-forward="true" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1309#1310#0" expanded="true" />
-                <element signature="e#1342#1343#0" expanded="true" />
-                <element signature="e#1813#1814#0" expanded="true" />
-                <element signature="e#1854#1855#0" expanded="true" />
-                <element signature="e#2330#2331#0" expanded="true" />
-                <element signature="e#2374#2375#0" expanded="true" />
-                <element signature="e#1976#1977#0" expanded="true" />
-                <element signature="e#2009#2010#0" expanded="true" />
-                <element signature="e#4362#4363#0" expanded="true" />
-                <element signature="e#4401#4402#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="World.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/World.java">
+      <file leaf-file-name="MapPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/MapPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+            <state relative-caret-position="195">
+              <caret line="85" column="77" selection-start-line="85" selection-start-column="77" selection-end-line="85" selection-end-column="77" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimulationPanel.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="68" column="57" selection-start-line="68" selection-start-column="57" selection-end-line="68" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -92,79 +72,11 @@
       <file leaf-file-name="SimulationWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+            <state relative-caret-position="102">
+              <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/config.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/MapPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="70" column="56" selection-start-line="70" selection-start-column="56" selection-end-line="70" selection-end-column="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3294#3295#0" expanded="true" />
-                <element signature="e#3330#3331#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimulationPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="91" column="37" selection-start-line="91" selection-start-column="37" selection-end-line="91" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimulationEngine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/SimulationEngine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="111" column="46" selection-start-line="111" selection-start-column="46" selection-end-line="111" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="n#!!doc;n#SimulationEngine#0;n#SimulationEngine#0" />
-                <element signature="method#create#0;class#SimulationEngine#0" />
-                <element signature="e#2068#2069#0" expanded="true" />
-                <element signature="e#2094#2095#0" expanded="true" />
-                <element signature="e#2561#2562#0" expanded="true" />
-                <element signature="e#2625#2626#0" expanded="true" />
-                <element signature="e#2804#2805#0" expanded="true" />
-                <element signature="e#2896#2897#0" expanded="true" />
-                <element signature="e#3094#3095#0" expanded="true" />
-                <element signature="e#3126#3127#0" expanded="true" />
-                <element signature="e#3167#3168#0" expanded="true" />
-                <element signature="e#3200#3201#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="statistics.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/statistics.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -237,16 +149,16 @@
         <option value="$PROJECT_DIR$/src/test/java/pl/cwikla/po/evolutionaryProject/model/ConfigTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/AnimalGenotype.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/Simulator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Statistics.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationWindow.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config.json" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Animal.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/MapPanel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationPanel.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/World.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Position.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/TorusWorldMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/SimulationEngine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Statistics.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationPanel.java" />
       </list>
     </option>
   </component>
@@ -578,7 +490,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="8" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32985386" />
@@ -593,7 +504,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3297414" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14443219" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.14443219" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32985386" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -609,6 +520,36 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" id="Palette" order="8" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.24972437" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3559499" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection Results" order="10" weight="0.32985386" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14443219" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32985386" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32985386" />
+      <window_info anchor="right" x="0" y="0" width="418" height="896" id="Documentation" order="0" side_tool="true" weight="0.3296582" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.41231734" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3297414" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32881" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32985386" />
+      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -749,16 +690,6 @@
           <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3129#3130#0" expanded="true" />
-            <element signature="e#3165#3166#0" expanded="true" />
-            <element signature="e#6825#6826#0" expanded="true" />
-            <element signature="e#6873#6874#0" expanded="true" />
-            <element signature="e#7017#7018#0" expanded="true" />
-            <element signature="e#7078#7079#0" expanded="true" />
-            <element signature="e#7519#7520#0" expanded="true" />
-            <element signature="e#7613#7614#0" expanded="true" />
-            <element signature="e#7837#7838#0" expanded="true" />
-            <element signature="e#7906#7907#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -868,17 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/MapDirection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
-          <folding>
-            <element signature="e#638#639#0" expanded="true" />
-            <element signature="e#702#703#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -900,24 +820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Gene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="120" lean-forward="true" selection-start-line="120" selection-end-line="120" />
-          <folding>
-            <element signature="e#162#190#0" />
-            <element signature="e#505#524#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/AnimalObserver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -925,105 +827,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/AnimalGenotype.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-672">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dupa.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Statistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="50" column="77" selection-start-line="50" selection-start-column="77" selection-end-line="50" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1467#1468#0" expanded="true" />
-            <element signature="e#1500#1501#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/Simulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Animal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-179">
-          <caret line="80" column="27" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1309#1310#0" expanded="true" />
-            <element signature="e#1342#1343#0" expanded="true" />
-            <element signature="e#1813#1814#0" expanded="true" />
-            <element signature="e#1854#1855#0" expanded="true" />
-            <element signature="e#2330#2331#0" expanded="true" />
-            <element signature="e#2374#2375#0" expanded="true" />
-            <element signature="e#1976#1977#0" expanded="true" />
-            <element signature="e#2009#2010#0" expanded="true" />
-            <element signature="e#4362#4363#0" expanded="true" />
-            <element signature="e#4401#4402#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/MapPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="70" column="56" selection-start-line="70" selection-start-column="56" selection-end-line="70" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3294#3295#0" expanded="true" />
-            <element signature="e#3330#3331#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="91" column="37" selection-start-line="91" selection-start-column="37" selection-end-line="91" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/statistics.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
@@ -1040,9 +844,98 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/statistics.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/SimulationEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2814">
+          <caret line="34" column="57" lean-forward="true" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2068#2069#0" expanded="true" />
+            <element signature="e#2094#2095#0" expanded="true" />
+            <element signature="e#2625#2626#0" expanded="true" />
+            <element signature="e#2689#2690#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/Simulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Animal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-859">
+          <caret line="80" column="27" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1976#1977#0" expanded="true" />
+            <element signature="e#2010#2011#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/AnimalGenotype.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-672">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="e#162#190#0" />
+            <element signature="e#505#524#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Gene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/MapDirection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
+          <folding>
+            <element signature="e#638#639#0" expanded="true" />
+            <element signature="e#702#703#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Position.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
+        <state relative-caret-position="365">
           <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1050,44 +943,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/controller/SimulationEngine.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/Statistics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="111" column="46" selection-start-line="111" selection-start-column="46" selection-end-line="111" selection-end-column="46" />
+        <state relative-caret-position="331">
+          <caret line="72" column="66" lean-forward="true" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="n#!!doc;n#SimulationEngine#0;n#SimulationEngine#0" />
-            <element signature="method#create#0;class#SimulationEngine#0" />
-            <element signature="e#2068#2069#0" expanded="true" />
-            <element signature="e#2094#2095#0" expanded="true" />
-            <element signature="e#2561#2562#0" expanded="true" />
-            <element signature="e#2625#2626#0" expanded="true" />
-            <element signature="e#2804#2805#0" expanded="true" />
-            <element signature="e#2896#2897#0" expanded="true" />
-            <element signature="e#3094#3095#0" expanded="true" />
-            <element signature="e#3126#3127#0" expanded="true" />
-            <element signature="e#3167#3168#0" expanded="true" />
-            <element signature="e#3200#3201#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/model/TorusWorldMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="72" column="51" lean-forward="true" selection-start-line="72" selection-start-column="51" selection-end-line="72" selection-end-column="51" />
+        <state relative-caret-position="-2389">
+          <caret line="71" column="16" lean-forward="true" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3129#3130#0" expanded="true" />
-            <element signature="e#3165#3166#0" expanded="true" />
-            <element signature="e#6825#6826#0" expanded="true" />
-            <element signature="e#6873#6874#0" expanded="true" />
-            <element signature="e#7017#7018#0" expanded="true" />
-            <element signature="e#7078#7079#0" expanded="true" />
-            <element signature="e#7519#7520#0" expanded="true" />
-            <element signature="e#7613#7614#0" expanded="true" />
-            <element signature="e#7837#7838#0" expanded="true" />
-            <element signature="e#7906#7907#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/MapPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="85" column="77" selection-start-line="85" selection-start-column="77" selection-end-line="85" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/cwikla/po/evolutionaryProject/view/SimulationPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="68" column="57" selection-start-line="68" selection-start-column="57" selection-end-line="68" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
