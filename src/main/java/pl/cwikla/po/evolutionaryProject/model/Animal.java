@@ -14,13 +14,13 @@ public class Animal {
     private int energy;
     private int age;
     private int numberOfChildren;
+    private boolean isPreFather;
     private int numberOfDescendants;
+    private Animal preFather;
     private int dayOfDeath;
-    private Animal firstParent;
-    private Animal secondParent;
     private final List<AnimalObserver> observers;
 
-    public Animal(AnimalGenotype genotype, MapDirection orientation, Position position, int energy, Animal firstParent, Animal secondParent) {
+    public Animal(AnimalGenotype genotype, MapDirection orientation, Position position, int energy, Animal preFather) {
         this.id = ID_GEN.incrementAndGet();
         this.genotype = genotype;
         this.orientation = orientation;
@@ -28,10 +28,10 @@ public class Animal {
         this.energy = energy;
         this.age = 0;
         this.numberOfChildren = 0;
+        this.isPreFather = false;
+        this.preFather = preFather;
         this.numberOfDescendants = 0;
         this.dayOfDeath = 0;
-        this.firstParent = firstParent;
-        this.secondParent = secondParent;
         this.observers = new LinkedList<>();
     }
 
@@ -69,28 +69,16 @@ public class Animal {
         return numberOfChildren;
     }
 
-    public int getNumberOfDescendants() {
+    public int getNumberOfDescendants(){
         return numberOfDescendants;
-    }
-
-    public Animal getFirstParent() {
-        return firstParent;
-    }
-
-    public Animal getSecondParent() {
-        return secondParent;
-    }
-
-    public void setNumberOfChildren(int numberOfChildren) {
-        this.numberOfChildren = numberOfChildren;
-    }
-
-    public void setNumberOfDescendants(int numberOfDescendants) {
-        this.numberOfDescendants = numberOfDescendants;
     }
 
     public void setDayOfDeath(int dayOfDeath) {
         this.dayOfDeath = dayOfDeath;
+    }
+
+    public void preFatherIt(){
+        isPreFather = true;
     }
 
     //endregion
@@ -130,17 +118,36 @@ public class Animal {
 
     public Animal makeAChild(Animal secondParent, Position position) {
         this.numberOfChildren++;
-        secondParent.setNumberOfChildren(secondParent.getNumberOfChildren() + 1);
+        secondParent.numberOfChildren++;
         this.energy /= 2;
         secondParent.energy /= 2;
+        Animal preFather = getPreFather(this, secondParent);
+        if(preFather != null){
+            preFather.numberOfDescendants++;
+        }
         return new Animal(
                 AnimalGenotype.mix(this.getGenotype(), secondParent.getGenotype()),
                 MapDirection.random(),
                 position,
                 this.getEnergy() / 2 + secondParent.getEnergy() / 2,
-                this,
-                secondParent
+                preFather
         );
+    }
+
+    private Animal getPreFather(Animal firstParent, Animal secondParent) {
+        if(firstParent.isPreFather){
+            return firstParent;
+        }
+        if(secondParent.isPreFather){
+            return secondParent;
+        }
+        if(secondParent.preFather != null){
+            return secondParent.preFather;
+        }
+        if(firstParent.preFather != null){
+            return firstParent.preFather;
+        }
+        return null;
     }
 
     //endregion

@@ -1,7 +1,5 @@
 package pl.cwikla.po.evolutionaryProject.model;
 
-import pl.cwikla.po.evolutionaryProject.controller.SimulationEngine;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -65,7 +63,7 @@ public class Statistics {
                 avgEnergy / day,
                 avgNumberOfChildren / day,
                 genotypes.entrySet().stream().max(Comparator.comparingInt(Map.Entry::getValue)).get().getKey().toString()
-                );
+        );
     }
 
     public void saveToFile() {

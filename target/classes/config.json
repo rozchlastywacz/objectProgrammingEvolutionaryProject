@@ -1,13 +1,13 @@
 {
   "map": {
-    "width": 100,
-    "height": 100,
+    "width": 20,
+    "height": 20,
     "jungleRatio": 0.1
   },
   "animals":{
     "startEnergy": 80,
     "moveEnergy": 1,
     "plantEnergy": 1400,
-    "numberOfAnimalsAtStart": 100
+    "numberOfAnimalsAtStart": 10
   }
 }

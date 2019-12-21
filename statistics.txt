@@ -1,8 +1,8 @@
 -----Statistics of evolutionary simulation----- 
-Days passed: 1661 
-Total number of born animals: 18604 
-Average number of alive animals per day: 721,63 
-Average lifetime : 63,03 
-Average energy per animal per day: 374,17 
-Average number of children per animal per day: 1,72
-Dominant genotype in all days passed: A4B6C1D5E5F3G5H3 
+Days passed: 1058 
+Total number of born animals: 16123 
+Average number of alive animals per day: 588,21 
+Average lifetime : 38,19 
+Average energy per animal per day: 180,38 
+Average number of children per animal per day: 1,83
+Dominant genotype in all days passed: A5B1C3D5E1F8G5H4 

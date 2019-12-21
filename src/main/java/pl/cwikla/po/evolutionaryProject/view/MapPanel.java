@@ -1,7 +1,6 @@
 package pl.cwikla.po.evolutionaryProject.view;
 
 import pl.cwikla.po.evolutionaryProject.model.Animal;
-import pl.cwikla.po.evolutionaryProject.model.AnimalGenotype;
 import pl.cwikla.po.evolutionaryProject.model.Position;
 import pl.cwikla.po.evolutionaryProject.model.TorusWorldMap;
 
@@ -14,16 +13,16 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MapPanel extends JPanel {
-    private TorusWorldMap map;
+    private final TorusWorldMap map;
     private Map<Position, JButton> buttonMap;
     private int startEnergy;
 
     private Animal trackedAnimal;
 
     private List<Animal> dominantGenotypeAnimals;
-    private AtomicBoolean showDominantGenotypeAnimals = new AtomicBoolean(false);
+    private final AtomicBoolean showDominantGenotypeAnimals = new AtomicBoolean(false);
 
-    public MapPanel(TorusWorldMap map, int startEnergy) {
+    MapPanel(TorusWorldMap map, int startEnergy) {
         this.map = map;
         buttonMap = new HashMap<>();
         this.startEnergy = startEnergy;
@@ -65,11 +64,12 @@ public class MapPanel extends JPanel {
                 Animal animal = map.getTheStrongestAnimal(position).orElse(null);
                 if (animal != null) {
                     if (!animal.equals(trackedAnimal)) {
-                        button.setBackground(animal.getEnergy() > startEnergy ? new Color(0,0,150) : new Color(51,204,255));
+                        button.setBackground(animal.getEnergy() > startEnergy ? new Color(0, 0, 150) : new Color(51, 204, 255));
                         button.setToolTipText(animal.getGenotype().toString());
                         button.addActionListener(e -> {
                             trackedAnimal = animal;
-                            button.setBackground(new Color(255,0,0));
+                            trackedAnimal.preFatherIt();
+                            button.setBackground(new Color(255, 0, 0));
                         });
                     }
                 }
@@ -79,24 +79,24 @@ public class MapPanel extends JPanel {
         if (showDominantGenotypeAnimals.get()) {
             dominantGenotypeAnimals.forEach(animal -> {
                 JButton button = buttonMap.get(animal.getPosition());
-                button.setBackground(new Color(200,0,200));
+                button.setBackground(new Color(200, 0, 200));
             });
         }
-        if(trackedAnimal != null){
-            buttonMap.get(trackedAnimal.getPosition()).setBackground(new Color(255,0,0));
+        if (trackedAnimal != null) {
+            buttonMap.get(trackedAnimal.getPosition()).setBackground(new Color(255, 0, 0));
         }
         notifyAll();
     }
 
-    public Animal getTrackedAnimal() {
+    Animal getTrackedAnimal() {
         return trackedAnimal;
     }
 
-    public void setDominantGenotypeAnimals(List<Animal> dominantGenotypeAnimals) {
+    void setDominantGenotypeAnimals(List<Animal> dominantGenotypeAnimals) {
         this.dominantGenotypeAnimals = dominantGenotypeAnimals;
     }
 
-    public void toggleShowDominantGenotypes(){
+    void toggleShowDominantGenotypes() {
         showDominantGenotypeAnimals.set(!showDominantGenotypeAnimals.get());
         this.repaint();
     }

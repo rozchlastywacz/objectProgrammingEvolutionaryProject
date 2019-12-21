@@ -7,8 +7,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Simulator implements Runnable {
-    private AtomicBoolean isRunning = new AtomicBoolean(false);
-    private SimulationEngine simulationEngine;
+    private final AtomicBoolean isRunning = new AtomicBoolean(false);
+    private final SimulationEngine simulationEngine;
     private final SimulationPanel simulationPanel;
     private int stepDelay;
 

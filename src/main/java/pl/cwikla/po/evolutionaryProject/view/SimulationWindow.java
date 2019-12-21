@@ -11,7 +11,7 @@ public class SimulationWindow {
     private JFrame mainWindow;
     private JPanel innerWindow;
 
-    public SimulationWindow(Config config){
+    public SimulationWindow(Config config) {
         this.config = config;
         mainWindow = new JFrame("Evolutionary Project");
         mainWindow.setLayout(new FlowLayout());
@@ -19,13 +19,13 @@ public class SimulationWindow {
         mainWindow.setMinimumSize(new Dimension(100, 100));
 
         innerWindow = new JPanel();
-        innerWindow.setLayout(new GridLayout(0,2));
+        innerWindow.setLayout(new GridLayout(0, 2));
         JScrollPane scrollPane = new JScrollPane(innerWindow);
         scrollPane.setHorizontalScrollBar(new JScrollBar(JScrollBar.VERTICAL));
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(1800,1000));
+        scrollPane.setPreferredSize(new Dimension(1800, 1000));
         mainWindow.add(scrollPane);
         //region Menu Bar
 
@@ -42,12 +42,12 @@ public class SimulationWindow {
         mainWindow.setVisible(true);
     }
 
-    public void addSimulationPanel(SimulationPanel simulationPanel){
+    public void addSimulationPanel(SimulationPanel simulationPanel) {
         innerWindow.add(simulationPanel);
         mainWindow.pack();
     }
 
-    public void addSimulation(){
+    public void addSimulation() {
         Simulator simulator = new Simulator(config);
         this.addSimulationPanel(simulator.getSimulationPanel());
         Thread simulation = new Thread(simulator);

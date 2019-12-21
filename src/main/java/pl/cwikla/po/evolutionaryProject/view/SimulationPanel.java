@@ -26,6 +26,7 @@ public class SimulationPanel extends JPanel {
 
     private JLabel trackedAnimalID;
     private JLabel trackedAnimalChildren;
+    private JLabel trackedAnimalDescendants;
     private JLabel trackedAnimalDeathTime;
 
     private Button toggleDominantGenes;
@@ -52,6 +53,7 @@ public class SimulationPanel extends JPanel {
         currentDay = new JLabel();
 
         trackedAnimalID = new JLabel();
+        trackedAnimalDescendants = new JLabel();
         trackedAnimalChildren = new JLabel();
         trackedAnimalDeathTime = new JLabel();
 
@@ -62,9 +64,9 @@ public class SimulationPanel extends JPanel {
         delaySlider.addChangeListener((ChangeEvent e) -> simulator.setStepDelay(delaySlider.getValue()));
         this.setLayout(new FlowLayout());
         this.add(mapPanel);
-
-        //region stats and so on
+        this.setBorder(new BorderUIResource.LineBorderUIResource(Color.BLACK));
         JPanel cockpit = new JPanel();
+        //region stats and so on
         cockpit.setLayout(new GridBagLayout());
         cockpit.setBorder(new BorderUIResource.LineBorderUIResource(Color.BLACK));
         GridBagConstraints constraints = new GridBagConstraints();
@@ -82,7 +84,17 @@ public class SimulationPanel extends JPanel {
         constraints.gridy = 1;
         cockpit.add(delaySlider, constraints);
 
+        constraints.gridx = 1;
+        JLabel delayLabel = new JLabel(">0ms per frame");
+        cockpit.add(delayLabel, constraints);
+
+        delaySlider.addChangeListener(c ->{
+            delayLabel.setText(">" + delaySlider.getValue() + "ms per frame");
+        });
+
+
         //region labels and text fields
+        constraints.gridx = 0;
         constraints.gridwidth = 1;
         constraints.gridy = 2;
         constraints.weightx = 0.5;
@@ -160,6 +172,13 @@ public class SimulationPanel extends JPanel {
 
         constraints.gridy = 13;
         constraints.gridx = 0;
+        cockpit.add(new JLabel("Descendants"), constraints);
+
+        constraints.gridx = 1;
+        cockpit.add(trackedAnimalDescendants, constraints);
+
+        constraints.gridy = 14;
+        constraints.gridx = 0;
         cockpit.add(new JLabel("Day of death"), constraints);
 
         constraints.gridx = 1;
@@ -175,10 +194,10 @@ public class SimulationPanel extends JPanel {
         cockpit.add(toggleDominantGenes, constraints);
 
 
-        saveStatisticsToFile.addActionListener(e ->{
+        saveStatisticsToFile.addActionListener(e -> {
             simulator.getSimulationEngine().getStatistics().saveToFile();
         });
-        constraints.gridy = 14;
+        constraints.gridy = 15;
         constraints.gridx = 0;
         constraints.gridwidth = 2;
         cockpit.add(saveStatisticsToFile, constraints);
@@ -214,10 +233,11 @@ public class SimulationPanel extends JPanel {
         if (trackedAnimal != null) {
             trackedAnimalID.setText(String.valueOf(trackedAnimal.getId()));
             trackedAnimalChildren.setText(String.valueOf(trackedAnimal.getNumberOfChildren()));
+            trackedAnimalDescendants.setText(String.valueOf(trackedAnimal.getNumberOfDescendants()));
             if (trackedAnimal.isDead())
                 trackedAnimalDeathTime.setText(String.valueOf(trackedAnimal.getDayOfDeath()));
             else
-                trackedAnimalDeathTime.setText(String.valueOf(trackedAnimal.getAge()));
+                trackedAnimalDeathTime.setText(String.valueOf(simulationEngine.getDay()));
         }
     }
 }

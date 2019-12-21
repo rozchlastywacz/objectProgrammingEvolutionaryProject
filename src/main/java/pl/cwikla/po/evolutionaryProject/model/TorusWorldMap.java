@@ -97,12 +97,6 @@ public class TorusWorldMap implements AnimalObserver {
         return jungleEmptyPositions;
     }
 
-    public Set<Animal> getAnimalsAt(Position position) {
-        if (map.get(position) != null)
-            return map.get(position).occupants;
-        return Collections.emptySet();
-    }
-
     public Set<Position> getAllPositions() {
         return map.keySet();
     }
@@ -215,12 +209,12 @@ public class TorusWorldMap implements AnimalObserver {
         return map.get(position).alpha();
     }
 
-    public Collection<Animal> getTheStrongestGroup(Position position){
+    public Collection<Animal> getTheStrongestGroup(Position position) {
         Animal alpha = getTheStrongestAnimal(position).get();
         return map.get(position).occupants.stream().filter(a -> a.getEnergy() == alpha.getEnergy()).collect(Collectors.toList());
     }
 
-    public Animal[] getTheStrongestPair(Position position){
+    public Animal[] getTheStrongestPair(Position position) {
         return map.get(position).alphaMaleAndFemale();
     }
 
@@ -235,9 +229,10 @@ public class TorusWorldMap implements AnimalObserver {
             return occupants.stream().max(Comparator.comparing(Animal::getEnergy));
         }
 
-        private Animal[] alphaMaleAndFemale(){
+        private Animal[] alphaMaleAndFemale() {
             return occupants.stream().sorted(Comparator.comparing(Animal::getEnergy).reversed()).limit(2).toArray(Animal[]::new);
         }
+
         private boolean isEmpty() {
             return !hasPlant.get() && occupants.isEmpty();
         }

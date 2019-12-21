@@ -5,7 +5,7 @@ import pl.cwikla.po.evolutionaryProject.model.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.groupingBy;
 
 public class SimulationEngine {
     private final TorusWorldMap worldMap;
@@ -59,6 +59,11 @@ public class SimulationEngine {
 
     //region getters
 
+
+    public AtomicInteger getDay() {
+        return day;
+    }
+
     public TorusWorldMap getWorldMap() {
         return worldMap;
     }
@@ -67,7 +72,7 @@ public class SimulationEngine {
         return aliveAnimalList;
     }
 
-    public Map.Entry<AnimalGenotype, List<Animal>> getAnimalsWithDominantGenotype(){
+    public Map.Entry<AnimalGenotype, List<Animal>> getAnimalsWithDominantGenotype() {
         return aliveAnimalList.stream()
                 .collect(groupingBy(Animal::getGenotype))
                 .entrySet().stream()
@@ -75,28 +80,28 @@ public class SimulationEngine {
                 .get();
     }
 
-    public AnimalGenotype getDominantGenotype(){
+    public AnimalGenotype getDominantGenotype() {
         return getAnimalsWithDominantGenotype().getKey();
     }
 
 
-    public double getAverageEnergy(){
+    public double getAverageEnergy() {
         return aliveAnimalList.stream().mapToInt(Animal::getEnergy).average().orElse(-1);
     }
 
-    public double getAverageLifetime(){
+    public double getAverageLifetime() {
         return deadAnimalList.stream().mapToInt(Animal::getAge).average().orElse(-1);
     }
 
-    public double getAverageNumberOfChildren(){
+    public double getAverageNumberOfChildren() {
         return aliveAnimalList.stream().mapToInt(Animal::getNumberOfChildren).average().orElse(-1);
     }
 
-    public int getNumberOfCurrentDay(){
+    public int getNumberOfCurrentDay() {
         return day.get();
     }
 
-    public Statistics getStatistics(){
+    public Statistics getStatistics() {
         return statistics;
     }
     //endregion
@@ -145,8 +150,8 @@ public class SimulationEngine {
                                 MapDirection.random(),
                                 position,
                                 startEnergy,
-                                null,
-                                null)
+                                null
+                                )
                 )
         );
 
@@ -155,7 +160,7 @@ public class SimulationEngine {
     //endregion
 
     //region one step forward and two steps back
-    public void step() {
+    void step() {
         positionsOfInterest.clear();
 
         removeDeadAnimals();
@@ -173,7 +178,7 @@ public class SimulationEngine {
 
     private void removeDeadAnimals() {
         aliveAnimalList.removeIf(animal -> {
-            if(animal.isDead()){
+            if (animal.isDead()) {
                 worldMap.removeAnimal(animal);
                 deadAnimalList.add(animal);
                 animal.setDayOfDeath(day.get());
@@ -199,7 +204,7 @@ public class SimulationEngine {
                 .filter(worldMap::isGrassAt)
                 .forEach(position -> {
                     Collection<Animal> theStrongestGroup = worldMap.getTheStrongestGroup(position);
-                    int energy = plantEnergy/ theStrongestGroup.size();
+                    int energy = plantEnergy / theStrongestGroup.size();
                     theStrongestGroup.forEach(animal -> animal.eatGrass(energy));
 
                     worldMap.removeGrassFrom(position);
@@ -213,7 +218,7 @@ public class SimulationEngine {
                     Animal[] parents = worldMap.getTheStrongestPair(position);
                     Animal firstParent = parents[0];
                     Animal secondParent = parents[1];
-                    if(enoughEnergy(firstParent, secondParent)){
+                    if (enoughEnergy(firstParent, secondParent)) {
                         Animal child = firstParent.makeAChild(secondParent, worldMap.adjacent(position, MapDirection.random()));
                         aliveAnimalList.add(child);
                         worldMap.placeAnimal(child);
@@ -225,7 +230,7 @@ public class SimulationEngine {
 
     private boolean enoughEnergy(Animal firstParent, Animal secondParent) {
         return firstParent != null && secondParent != null &&
-                firstParent.getEnergy() >= startEnergy/2 && secondParent.getEnergy() >= startEnergy/2;
+                firstParent.getEnergy() >= startEnergy / 2 && secondParent.getEnergy() >= startEnergy / 2;
     }
     //endregion
 
